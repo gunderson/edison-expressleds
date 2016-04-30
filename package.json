@@ -1,0 +1,19 @@
+{
+    "name": "edison-expressleds",
+    "version": "1.0.0",
+    "description": "first test",
+    "main": "index.js",
+    "scripts": {
+        "preinstall": "bash deps.sh"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gunderson/edison-expressleds.git"
+    },
+    "author": "Patrick Gunderson",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/gunderson/edison-expressleds/issues"
+    },
+    "homepage": "https://github.com/gunderson/edison-expressleds#readme"
+}
