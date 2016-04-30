@@ -1,1 +1,1 @@
-apt-get install imagemagick mongodb
+apt-get install imagemagick mongodb-org
