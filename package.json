@@ -4,6 +4,7 @@
     "description": "first test",
     "main": "index.js",
     "scripts": {
+        "preinstall": "bash __deps.sh",
         "start": "node index.js"
     },
     "repository": {
