@@ -5,7 +5,7 @@ FROM resin/edison-debian:latest
 
 # use apt-get if you need to install dependencies,
 # for instance if you need ALSA sound utils, just uncomment the lines below.
-RUN apt-get update && apt-get install -yq \
+RUN apt-get update && apt-get install -y \
     imagemagick mongodb-org && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
