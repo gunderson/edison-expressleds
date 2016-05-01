@@ -1,9 +1,14 @@
 
 
+# base-image for node on any machine using a template variable,
+# see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templates
+# Note the node:slim image doesn't have node-gyp
+FROM resin/%%RESIN_MACHINE_NAME%%-node:latest
+
 ## START NETATALK
 # taken from https://github.com/cptactionhank/docker-netatalk/blob/master/Dockerfile
 
-FROM debian:jessie
+######## FROM debian:jessie
 
 # Enable systemd init system in container
 ENV INITSYSTEM=on
@@ -86,7 +91,7 @@ CMD ["/netatalk-entrypoint.sh"]
 #
 # https://github.com/docker-library/mongo/blob/4bb17b336a05ad85c9bf83b103d21529e27e62f9/3.2/Dockerfile
 #
-FROM debian:wheezy
+######## FROM debian:wheezy
 
 # Enable systemd init system in container
 ENV INITSYSTEM=on
@@ -170,10 +175,6 @@ RUN apt-get update && apt-get install -y \
 ## ---------------------------------------------------
 ## START NODE
 
-# base-image for node on any machine using a template variable,
-# see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templates
-# Note the node:slim image doesn't have node-gyp
-FROM resin/%%RESIN_MACHINE_NAME%%-node:latest
 
 # Enable systemd init system in container
 ENV INITSYSTEM=on
