@@ -69,9 +69,9 @@ RUN ./configure \
                    &&  mkdir /media/share
 
 
-COPY bash/netatalk-entrypoint.sh /netatalk-entrypoint.sh
-COPY conf/afp.conf /etc/afp.conf
-COPY conf/avahi-daemon.conf /etc/avahi-daemon.conf
+COPY src/bash/netatalk-entrypoint.sh /netatalk-entrypoint.sh
+COPY src/etc/afp.conf /etc/afp.conf
+COPY src/etc/avahi-daemon.conf /etc/avahi-daemon.conf
 EXPOSE 548 636
 
 CMD ["/netatalk-entrypoint.sh"]
@@ -144,13 +144,13 @@ RUN set -x \
 		mongodb-org-tools=$MONGO_VERSION \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /var/lib/mongodb \
-	&& mv /etc/mongod.conf /etc/mongod.conf.orig
+	&& mv src/etc/mongod.conf /etc/mongod.conf.orig
 
 RUN mkdir -p /data/db /data/configdb \
 	&& chown -R mongodb:mongodb /data/db /data/configdb
-# VOLUME /data/db /data/configdb
+VOLUME /data/db /data/configdb
 
-COPY bash/mongo-entrypoint.sh /mongo-entrypoint.sh
+COPY src/bash/mongo-entrypoint.sh /mongo-entrypoint.sh
 ENTRYPOINT ["/mongo-entrypoint.sh"]
 
 EXPOSE 27017

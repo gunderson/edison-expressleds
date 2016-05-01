@@ -2,10 +2,10 @@
     "name": "edison-expressleds",
     "version": "1.0.0",
     "description": "first test",
-    "main": "index.js",
+    "main": "src/js/main.js",
     "scripts": {
         "__preinstall__": "bash __deps.sh",
-        "start": "node index.js"
+        "start": "node src/js/main.js"
     },
     "repository": {
         "type": "git",
