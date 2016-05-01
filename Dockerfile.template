@@ -65,9 +65,6 @@ VOLUME /data/db /data/configdb
 COPY bash/docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-EXPOSE 27017
-# start up the mongo service
-CMD ["service","mongod","start"]
 
 ## END MONGO
 ## ---------------------------------------------------
@@ -107,7 +104,11 @@ COPY . ./
 # Enable systemd init system in container
 ENV INITSYSTEM=on
 
-# index.js will run when container starts up on the device
-CMD ["npm", "start"]
 
+# start up the mongo daemon
+EXPOSE 27017
+CMD ["mongod","&"]
+
+# index.js will run when container starts up on the device
 EXPOSE 3000
+CMD ["npm", "start"]
