@@ -34,4 +34,4 @@ checkinstall --pkgname=netatalk --pkgversion="$(date +%Y%m%d%H%M)" --backup=no -
 
 
 apt-get update
-apt-get install nodejs redis-server nginx postgresql-9.4 avahi-daemon netatalk
+apt-get install nodejs redis-server nginx postgresql-9.4 avahi-daemon
