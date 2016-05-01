@@ -7,6 +7,12 @@ FROM resin/edison-debian:latest
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 RUN echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
+# make sure mongo has a place to put its data db
+RUN mkdir -p /data/db
+# use the local mongod.conf
+COPY etc/mongod.conf /etc/mongod.conf
+CMD ["service","mongod","start"]
+
 
 # use apt-get if you need to install dependencies,
 # for instance if you need ALSA sound utils, just uncomment the lines below.
