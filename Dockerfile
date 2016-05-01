@@ -4,7 +4,7 @@ FROM resin/edison-buildpack-deps:wheezy
 ENV NODE_VERSION 6.0.0
 
 RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x86.tar.gz" \
-	&& echo "142bdf1cb8793bd7c7da7974c73bd2d466933f8d5b496d9a28d3b1e343b62bd0  http://nodejs.org/dist/v6.0.0/node-v6.0.0-linux-x86.tar.gz" | sha256sum -c - \
+	&& echo "142bdf1cb8793bd7c7da7974c73bd2d466933f8d5b496d9a28d3b1e343b62bd0  node-v$NODE_VERSION-linux-x86.tar.gz" | sha256sum -c - \
 	&& tar -xzf "node-v$NODE_VERSION-linux-x86.tar.gz" -C /usr/local --strip-components=1 \
 	&& rm "node-v$NODE_VERSION-linux-x86.tar.gz" \
 	&& npm install mraa \
@@ -17,6 +17,7 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.0.list
 After this initial preparation we can update our packages and install MongoDB.
+
 
 # Update apt-get sources AND install MongoDB
 RUN apt-get update && apt-get install -y mongodb-org
