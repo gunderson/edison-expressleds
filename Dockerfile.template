@@ -1,6 +1,5 @@
-# base-image for node on any machine using a template variable,
-# see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templates
-# Note the node:slim image doesn't have node-gyp
+## START MONGO
+
 FROM resin/edison-debian:latest
 
 # Add mongodb keyserver and repository host
@@ -10,16 +9,25 @@ RUN echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" | 
 # make sure mongo has a place to put its data db
 RUN mkdir -p /data/db
 # use the local mongod.conf
-COPY etc/mongod.conf /etc/mongod.conf
-CMD ["service","mongod","start"]
+COPY conf/mongod.conf /etc/mongod.conf
 
 
-# use apt-get if you need to install dependencies,
+## END MONGO
+## ---------------------------------------------------
+## START APT
+
 # for instance if you need ALSA sound utils, just uncomment the lines below.
 RUN apt-get update && apt-get install -y \
-    imagemagick ffmpeg && \
+    imagemagick && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+## END APT
+## ---------------------------------------------------
+## START NODE
+
+# base-image for node on any machine using a template variable,
+# see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templates
+# Note the node:slim image doesn't have node-gyp
 FROM resin/%%RESIN_MACHINE_NAME%%-node:latest
 
 # Defines our working directory in container
@@ -32,11 +40,16 @@ COPY package.json package.json
 # making sure to clean up the artifacts it creates in order to reduce the image size.
 RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
 
+## END NODE
+## ---------------------------------------------------
+## START SYSTEM
+
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
 
 # Enable systemd init system in container
 ENV INITSYSTEM=on
 
-# server.js will run when container starts up on the device
+CMD ["service","mongod","start"]
+# index.js will run when container starts up on the device
 CMD ["npm", "start"]
