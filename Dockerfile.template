@@ -1,10 +1,13 @@
-# Enable systemd init system in container
-ENV INITSYSTEM=on
+
 
 ## START NETATALK
 # taken from https://github.com/cptactionhank/docker-netatalk/blob/master/Dockerfile
 
 FROM debian:jessie
+
+# Enable systemd init system in container
+ENV INITSYSTEM=on
+
 ENV NETATALK_VERSION 3.1.8
 ENV libevent_version 2.0.22-stable
 
@@ -84,6 +87,9 @@ CMD ["/netatalk-entrypoint.sh"]
 # https://github.com/docker-library/mongo/blob/4bb17b336a05ad85c9bf83b103d21529e27e62f9/3.2/Dockerfile
 #
 FROM debian:wheezy
+
+# Enable systemd init system in container
+ENV INITSYSTEM=on
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
@@ -168,6 +174,9 @@ RUN apt-get update && apt-get install -y \
 # see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templates
 # Note the node:slim image doesn't have node-gyp
 FROM resin/%%RESIN_MACHINE_NAME%%-node:latest
+
+# Enable systemd init system in container
+ENV INITSYSTEM=on
 
 # Defines our working directory in container
 WORKDIR /usr/src/app
