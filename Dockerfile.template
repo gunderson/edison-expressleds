@@ -82,7 +82,7 @@ CMD ["/docker-entrypoint.sh"]
 #
 
 # Pull base image.
-FROM dockerfile/debian:jessie
+FROM debian:jessie
 
 # Install MongoDB.
 RUN \
