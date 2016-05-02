@@ -17,7 +17,7 @@
         "url": "https://github.com/gunderson/edison-expressleds/issues"
     },
     "engines": {
-        "node": "^5.7.0"
+        "node": "^6.0.0"
     },
     "homepage": "https://github.com/gunderson/edison-expressleds#readme",
     "dependencies": {
