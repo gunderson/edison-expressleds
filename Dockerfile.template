@@ -4,7 +4,9 @@ FROM resin/edison-debian:latest
 ENV INITSYSTEM on
 
 # Your code goes here
-RUN apt-get update && apt-get install nodejs
+RUN apt-get update && apt-get install nodejs mraa
+RUN npm install -g n
+RUN n stable
 
 # Copy package.json to root of container
 # This is copied independently for better caching.
