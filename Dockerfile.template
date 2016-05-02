@@ -97,6 +97,10 @@ RUN apt-get update \
         &&  wget      "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz" \
         &&  curl -SL  "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz" | tar xvz
 
+COPY src/bash/netatalk-entrypoint.sh /netatalk-entrypoint.sh
+COPY src/etc/afp.conf /etc/afp.conf
+COPY src/etc/avahi-daemon.conf /etc/avahi-daemon.conf
+
 WORKDIR netatalk-3.1.8
 
 RUN ./configure \
@@ -139,9 +143,6 @@ RUN ./configure \
                    &&  mkdir /media/share
 
 
-COPY src/bash/netatalk-entrypoint.sh /netatalk-entrypoint.sh
-COPY src/etc/afp.conf /etc/afp.conf
-COPY src/etc/avahi-daemon.conf /etc/avahi-daemon.conf
 EXPOSE 548 636
 
 ENTRYPOINT ["/netatalk-entrypoint.sh"]
