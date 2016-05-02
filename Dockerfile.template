@@ -39,8 +39,6 @@ COPY src/bash/netatalk-entrypoint.sh /netatalk-entrypoint.sh
 COPY src/etc/afp.conf /etc/afp.conf
 COPY src/etc/avahi-daemon.conf /etc/avahi-daemon.conf
 
-echo tail src/bash/netatalk-entrypoint.sh
-
 WORKDIR netatalk-3.1.8
 
 RUN ./configure \
