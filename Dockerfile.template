@@ -23,10 +23,10 @@ RUN apt-get update\ && apt-get install\
     --no-install-recommends\
     --fix-missing\
     --assume-yes\
-$DEPS\
-tracker\
-avahi-daemon\
-curl wget\
+    $DEPS \
+    tracker \
+    avahi-daemon \
+    && curl wget\
     && wget "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz"\ && curl -SL "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz" | tar xvz
 
 COPY src/bash/netatalk-entrypoint.sh/netatalk-entrypoint.sh
@@ -38,38 +38,38 @@ WORKDIR netatalk-3.1.8
 RUN ./configure\
     --prefix = /usr \
     --sysconfdir = /etc \
-    --with-init-style = debian-systemd\
-    --without-libevent\
-    --without-tdb\
-    --with-cracklib\
-    --enable-krbV-uam\
-    --with-pam-confdir=/etc/pam.d\
-    --with-dbus-sysconf-dir=/etc/dbus-1/system.d\
-    --with-tracker-pkgconfig-version=1.0\
-    && make\
-    && make install\
+    --with-init-style = debian-systemd \
+    --without-libevent \
+    --without-tdb \
+    --with-cracklib \
+    --enable-krbV-uam \
+    --with-pam-confdir=/etc/pam.d \
+    --with-dbus-sysconf-dir=/etc/dbus-1/system.d \
+    --with-tracker-pkgconfig-version=1.0 \
+    && make \
+    && make install \
     && apt-get --quiet--yes purge--auto-remove\
-    $DEPS\
-    tracker-gui\
-    libgl1-mesa-dri\
-    libevent-2.0\
-    libavahi-client3\
-    libevent-core-2.0\
-    libwrap0\
-    libtdb1\
-    libmysqlclient18\
-    libcrack2\
-    libdbus-glib-1-2\
-    && apt-get --quiet--yes autoclean\
-    && apt-get --quiet--yes autoremove\
-    && apt-get --quiet--yes clean\
+    $DEPS \
+    tracker-gui \
+    libgl1-mesa-dri \
+    libevent-2.0 \
+    libavahi-client3 \
+    libevent-core-2.0 \
+    libwrap0 \
+    libtdb1 \
+    libmysqlclient18 \
+    libcrack2 \
+    libdbus-glib-1-2 \
+    && apt-get --quiet --yes autoclean \
+    && apt-get --quiet --yes autoremove \
+    && apt-get --quiet --yes clean \
     && rm -rf /netatalk* \
-    && rm -rf /usr/share/man\
-    && rm -rf /usr/share/doc\
-    && rm -rf /usr/share/icons\
-    && rm -rf /usr/share/poppler\
-    && rm -rf /usr/share/mime\
-    && rm -rf /usr/share/GeoIP\
+    && rm -rf /usr/share/man \
+    && rm -rf /usr/share/doc \
+    && rm -rf /usr/share/icons \
+    && rm -rf /usr/share/poppler \
+    && rm -rf /usr/share/mime \
+    && rm -rf /usr/share/GeoIP \
     && rm -rf /var/lib/apt/lists* \
     && mkdir /media/share
 
@@ -85,44 +85,44 @@ CMD["./netatalk-entrypoint.sh"]
 for instance
 if you need ALSA sound utils, just uncomment the lines below.
 RUN apt-get update && apt-get install -y\
-# imagemagick\
-rsync\
-sqlite\
-gcc\
-build-essential\
-g++\
-make\
-cmake\
-libsqlite3-dev\
-&& apt-get clean\
+# imagemagick \
+rsync \
+sqlite \
+gcc \
+build-essential \
+g++ \
+make \
+cmake \
+libsqlite3-dev \
+&& apt-get clean \
 && rm -rf /var/lib/apt/lists/* \
 && apt-get --quiet --yes autoclean \
 && apt-get --quiet --yes autoremove \
 && apt-get --quiet --yes clean \
 
-    ## END APT
-    ## ---------------------------------------------------
-    ## START NODE
+## END APT
+## ---------------------------------------------------
+## START NODE
 
-    # Defines our working directory in container
-    WORKDIR /usr/src/app
+# Defines our working directory in container
+WORKDIR /usr/src/app
 
-    # Copies the package.json first for better cache on later pushes
-    # shouldn't this be going into the workdir?
-    COPY package.json package.json
+# Copies the package.json first for better cache on later pushes
+# shouldn't this be going into the workdir?
+COPY package.json package.json
 
-    # This install npm dependencies on the resin.io build server,
-    # making sure to clean up the artifacts it creates in order to reduce the image size.
-    RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
+# This install npm dependencies on the resin.io build server,
+# making sure to clean up the artifacts it creates in order to reduce the image size.
+RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
 
-    ## END NODE
-    ## ---------------------------------------------------
-    ## START SYSTEM
+## END NODE
+## ---------------------------------------------------
+## START SYSTEM
 
-    # This will copy all files in our root to the working  directory in the container
-    COPY . ./
+# This will copy all files in our root to the working  directory in the container
+COPY . ./
 
-    # index.js will run when container starts up on the device
-    EXPOSE 3000
+# index.js will run when container starts up on the device
+EXPOSE 3000
 
-    CMD ["npm", "start"]
+CMD ["npm", "start"]
