@@ -88,7 +88,7 @@ CMD ["/netatalk-entrypoint.sh"]
 
 # for instance if you need ALSA sound utils, just uncomment the lines below.
 RUN apt-get update && apt-get install -y \
-    imagemagick sqlite gcc gpp make cmake libsqlite3-dev && \
+    imagemagick sqlite gcc build-essential g++ make cmake libsqlite3-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ## END APT
