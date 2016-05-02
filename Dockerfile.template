@@ -1,10 +1,10 @@
 # Gets latest base image from https://registry.hub.docker.com/u/resin/edison-node/
-FROM resin/edison-node:latest
-
-RUN apt-get update && apt-get install nodejs
-
+FROM resin/edison-debian:latest
 # Enable systemd
 ENV INITSYSTEM on
+
+# Your code goes here
+RUN apt-get update && apt-get install nodejs
 
 # Copy package.json to root of container
 # This is copied independently for better caching.
