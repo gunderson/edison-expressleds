@@ -1,6 +1,8 @@
 # Gets latest base image from https://registry.hub.docker.com/u/resin/edison-node/
 FROM resin/edison-node:latest
 
+RUN apt-get install nodejs
+
 # Enable systemd
 ENV INITSYSTEM on
 
