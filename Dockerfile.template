@@ -132,6 +132,7 @@ RUN ./configure \
                   &&  rm -rf /var/lib/apt/lists* \
                    &&  mkdir /media/share
 
+RUN libtool --finish /usr/lib/netatalk/
 
 COPY src/bash/netatalk-entrypoint.sh /netatalk-entrypoint.sh
 COPY src/etc/afp.conf /etc/afp.conf
