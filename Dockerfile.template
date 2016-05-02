@@ -4,7 +4,14 @@ FROM resin/edison-debian:latest
 ENV INITSYSTEM on
 
 # Your code goes here
-RUN apt-get update && apt-get install nodejs mraa
+RUN apt-get update && apt-get install nodejs
+
+RUN echo "src mraa-upm http://iotdk.intel.com/repos/3.0/intelgalactic-dev/opkg/i586" > /etc/opkg/mraa-upm.conf \
+    && opkg update \
+    && opkg install mraa
+
+
+
 RUN npm install -g n
 RUN n stable
 
