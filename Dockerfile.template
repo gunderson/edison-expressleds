@@ -1,129 +1,114 @@
-## ---------------------------------------------------
-## START NETATALK
+##-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- - ##START NETATALK
 
 
 
-# base-image for node on any machine using a template variable,
-# see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templates
-# Note the node:slim image doesn't have node-gyp
-FROM resin/%%RESIN_MACHINE_NAME%%-node:latest
+# base - image
+for node on any machine using a template variable, #see more about dockerfile templates here: http: //docs.resin.io/pages/deployment/docker-templates
+    #Note the node: slim image doesn 't have node-gyp
+FROM resin / % % RESIN_MACHINE_NAME % % -node: latest
 
-## START NETATALK
-# taken from https://github.com/cptactionhank/docker-netatalk/blob/master/Dockerfile
+## START NETATALK# taken from https: //github.com/cptactionhank/docker-netatalk/blob/master/Dockerfile
 
-ENV NETATALK_VERSION 3.1.8
-ENV libevent_version 2.0.22-stable
+    ENV NETATALK_VERSION 3.1.8
+ENV libevent_version 2.0.22 - stable
 
-ENV AVAHI="1"
+ENV AVAHI = "1"
 
-ENV DEPS="build-essential libevent-dev libssl-dev libgcrypt11-dev libkrb5-dev libpam0g-dev libwrap0-dev libdb-dev libtdb-dev libmysqlclient-dev libavahi-client-dev libacl1-dev libldap2-dev libcrack2-dev systemtap-sdt-dev libdbus-1-dev libdbus-glib-1-dev libglib2.0-dev libtracker-sparql-1.0-dev libtracker-miner-1.0-dev file"
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update \
- && apt-get install \
-        --no-install-recommends \
-        --fix-missing \
-        --assume-yes \
-        $DEPS \
-        tracker \
-        avahi-daemon \
-        curl wget \
-        &&  wget      "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz" \
-        &&  curl -SL  "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz" | tar xvz
+ENV DEPS = "build-essential libevent-dev libssl-dev libgcrypt11-dev libkrb5-dev libpam0g-dev libwrap0-dev libdb-dev libtdb-dev libmysqlclient-dev libavahi-client-dev libacl1-dev libldap2-dev libcrack2-dev systemtap-sdt-dev libdbus-1-dev libdbus-glib-1-dev libglib2.0-dev libtracker-sparql-1.0-dev libtracker-miner-1.0-dev file"
+ENV DEBIAN_FRONTEND = noninteractive
+RUN apt - get update\ && apt - get install\
+    --no - install - recommends\
+    --fix - missing\
+    --assume - yes\
+$DEPS\
+tracker\
+avahi - daemon\
+curl wget\
+    && wget "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz"\ && curl - SL "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz" | tar xvz
 
-COPY src/bash/netatalk-entrypoint.sh /netatalk-entrypoint.sh
-COPY src/etc/afp.conf /etc/afp.conf
-COPY src/etc/avahi-daemon.conf /etc/avahi-daemon.conf
+COPY src / bash / netatalk - entrypoint.sh / netatalk - entrypoint.sh
+COPY src / etc / afp.conf / etc / afp.conf
+COPY src / etc / avahi - daemon.conf / etc / avahi - daemon.conf
 
-WORKDIR netatalk-3.1.8
+WORKDIR netatalk - 3.1.8
 
-RUN ./configure \
-        --prefix=/usr \
-        --sysconfdir=/etc \
-        --with-init-style=debian-systemd \
-        --without-libevent \
-        --without-tdb \
-        --with-cracklib \
-        --enable-krbV-uam \
-        --with-pam-confdir=/etc/pam.d \
-        --with-dbus-sysconf-dir=/etc/dbus-1/system.d \
-        --with-tracker-pkgconfig-version=1.0 \
-        &&  make \
-         &&  make install \
-          &&  apt-get --quiet --yes purge --auto-remove \
-        $DEPS \
-        tracker-gui \
-        libgl1-mesa-dri \
-        &&  DEBIAN_FRONTEND=noninteractive apt-get install --yes \
-        libevent-2.0 \
-        libavahi-client3 \
-        libevent-core-2.0 \
-        libwrap0 \
-        libtdb1 \
-        libmysqlclient18 \
-        libcrack2 \
-        libdbus-glib-1-2 \
-        &&  apt-get --quiet --yes autoclean \
-         &&  apt-get --quiet --yes autoremove \
-          &&  apt-get --quiet --yes clean \
-           &&  rm -rf /netatalk* \
-            &&  rm -rf /usr/share/man \
-             &&  rm -rf /usr/share/doc \
-              &&  rm -rf /usr/share/icons \
-               &&  rm -rf /usr/share/poppler \
-                &&  rm -rf /usr/share/mime \
-                 &&  rm -rf /usr/share/GeoIP \
-                  &&  rm -rf /var/lib/apt/lists* \
-                   &&  mkdir /media/share
+RUN. / configure\
+    --prefix = /usr \
+    --sysconfdir = /etc \
+    --with - init - style = debian - systemd\
+    --without - libevent\
+    --without - tdb\
+    --with - cracklib\
+    --enable - krbV - uam\
+    --with - pam - confdir = /etc/pam.d\
+    --with - dbus - sysconf - dir = /etc/dbus - 1 / system.d\
+    --with - tracker - pkgconfig - version = 1.0\ && make\ && make install\ && apt - get--quiet--yes purge--auto - remove\
+$DEPS\
+tracker - gui\
+libgl1 - mesa - dri\ && DEBIAN_FRONTEND = noninteractive apt - get install--yes\
+libevent - 2.0\
+libavahi - client3\
+libevent - core - 2.0\
+libwrap0\
+libtdb1\
+libmysqlclient18\
+libcrack2\
+libdbus - glib - 1 - 2\ && apt - get--quiet--yes autoclean\ && apt - get--quiet--yes autoremove\ && apt - get--quiet--yes clean\ && rm - rf / netatalk * \
+    && rm - rf / usr / share / man\ && rm - rf / usr / share / doc\ && rm - rf / usr / share / icons\ && rm - rf / usr / share / poppler\ && rm - rf / usr / share / mime\ && rm - rf / usr / share / GeoIP\ && rm - rf /
+    var / lib / apt / lists * \
+    && mkdir / media / share
 
 
 EXPOSE 548 636
 
-CMD ["./netatalk-entrypoint.sh"]
+CMD["./netatalk-entrypoint.sh"]
 
 
-## END NETATALK
-## ---------------------------------------------------
-## START APT INSTALLATION
+## END NETATALK##-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- - ##START APT INSTALLATION
 
-# for instance if you need ALSA sound utils, just uncomment the lines below.
-RUN apt-get update && apt-get install -y \
-    imagemagick \
-	sqlite \
-	gcc \
-	build-essential \
-	g++ \
-	make \
-	cmake \
-	libsqlite3-dev && \
-    apt-get clean && \
-	rm -rf /var/lib/apt/lists/* \
-	&&  apt-get --quiet --yes autoclean \
-	&&  apt-get --quiet --yes autoremove \
-	&&  apt-get --quiet --yes clean \
+#
+for instance
+if you need ALSA sound utils, just uncomment the lines below.
+RUN apt - get update && apt - get install - y\# imagemagick\
+rsync\
+sqlite\
+gcc\
+build - essential\
+g++\
+make\
+cmake\
+libsqlite3 - dev && \
+    apt - get clean && \
+    rm - rf /
+    var / lib / apt / lists
+    /* \
+    	&&  apt-get --quiet --yes autoclean \
+    	&&  apt-get --quiet --yes autoremove \
+    	&&  apt-get --quiet --yes clean \
 
-## END APT
-## ---------------------------------------------------
-## START NODE
+    ## END APT
+    ## ---------------------------------------------------
+    ## START NODE
 
-# Defines our working directory in container
-WORKDIR /usr/src/app
+    # Defines our working directory in container
+    WORKDIR /usr/src/app
 
-# Copies the package.json first for better cache on later pushes
-# shouldn't this be going into the workdir?
-COPY package.json package.json
+    # Copies the package.json first for better cache on later pushes
+    # shouldn't this be going into the workdir?
+    COPY package.json package.json
 
-# This install npm dependencies on the resin.io build server,
-# making sure to clean up the artifacts it creates in order to reduce the image size.
-RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
+    # This install npm dependencies on the resin.io build server,
+    # making sure to clean up the artifacts it creates in order to reduce the image size.
+    RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
 
-## END NODE
-## ---------------------------------------------------
-## START SYSTEM
+    ## END NODE
+    ## ---------------------------------------------------
+    ## START SYSTEM
 
-# This will copy all files in our root to the working  directory in the container
-COPY . ./
+    # This will copy all files in our root to the working  directory in the container
+    COPY . ./
 
-# index.js will run when container starts up on the device
-EXPOSE 3000
+    # index.js will run when container starts up on the device
+    EXPOSE 3000
 
-CMD ["npm", "start"]
+    CMD ["npm", "start"]
