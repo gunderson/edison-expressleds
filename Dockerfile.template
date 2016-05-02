@@ -114,11 +114,11 @@ RUN apt-get update && apt-get install -y \
 
 ENV NODE_VERSION 6.0.0
 
-RUN curl -SLO "http://nodejs.org/dist/v6.0.0/node-v6.0.0-linux-x86.tar.gz" \
-	&& echo "4382b7366f3448d42f09d63f7dfccf45bf67f8be94d2bfe7203bdc79d0ae64e8  node-v6.0.0-linux-x86.tar.gz" | sha256sum -c - \
-	&& tar -xzf "node-v6.0.0-linux-x86.tar.gz" -C /usr/local --strip-components=1 \
-	&& rm "node-v6.0.0-linux-x86.tar.gz" \
-	# && npm install mraa --save \
+# RUN curl -SLO "http://nodejs.org/dist/v6.0.0/node-v6.0.0-linux-x86.tar.gz" \
+# 	&& echo "4382b7366f3448d42f09d63f7dfccf45bf67f8be94d2bfe7203bdc79d0ae64e8  node-v6.0.0-linux-x86.tar.gz" | sha256sum -c - \
+# 	&& tar -xzf "node-v6.0.0-linux-x86.tar.gz" -C /usr/local --strip-components=1 \
+# 	&& rm "node-v6.0.0-linux-x86.tar.gz" \
+RUN npm install mraa --save \
 	&& npm cache clear \
 	&& npm config set unsafe-perm true -g --unsafe-perm \
 	&& rm -rf /tmp/*
