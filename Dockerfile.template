@@ -78,7 +78,7 @@ RUN ./configure \
 
 EXPOSE 548 636
 
-CMD ["/netatalk-entrypoint.sh"]
+CMD ["./netatalk-entrypoint.sh"]
 
 
 ## END NETATALK
@@ -109,6 +109,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /usr/src/app
 
 # Copies the package.json first for better cache on later pushes
+# shouldn't this be going into the workdir?
 COPY package.json package.json
 
 # This install npm dependencies on the resin.io build server,
