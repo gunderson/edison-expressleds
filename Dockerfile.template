@@ -15,7 +15,7 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:latest
 ENV NETATALK_VERSION 3.1.8
 ENV libevent_version 2.0.22-stable
 
-ENV AVAHI = "1"
+ENV AVAHI "1"
 
 ENV DEPS = "build-essential libevent-dev libssl-dev libgcrypt11-dev libkrb5-dev libpam0g-dev libwrap0-dev libdb-dev libtdb-dev libmysqlclient-dev libavahi-client-dev libacl1-dev libldap2-dev libcrack2-dev systemtap-sdt-dev libdbus-1-dev libdbus-glib-1-dev libglib2.0-dev libtracker-sparql-1.0-dev libtracker-miner-1.0-dev file"
 ENV DEBIAN_FRONTEND=noninteractive
@@ -27,8 +27,9 @@ RUN apt-get update \
     $DEPS \
     tracker \
     avahi-daemon \
-    && curl wget\
-    && wget "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz"\ && curl -SL "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz" | tar xvz
+    && curl wget \
+    && wget "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz" \
+    && curl -SL "http://prdownloads.sourceforge.net/netatalk/netatalk-${NETATALK_VERSION}.tar.gz" | tar xvz
 
 COPY src/bash/netatalk-entrypoint.sh/netatalk-entrypoint.sh
 COPY src/etc/afp.conf/etc/afp.conf
