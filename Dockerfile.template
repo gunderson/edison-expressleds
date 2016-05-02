@@ -117,10 +117,10 @@ ENV NODE_VERSION 6.0.0
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
 
-# RUN curl -SLO "http://nodejs.org/dist/v6.0.0/node-v6.0.0-linux-x86.tar.gz" \
-# 	&& echo "4382b7366f3448d42f09d63f7dfccf45bf67f8be94d2bfe7203bdc79d0ae64e8  node-v6.0.0-linux-x86.tar.gz" | sha256sum -c - \
-# 	&& tar -xzf "node-v6.0.0-linux-x86.tar.gz" -C /usr/local --strip-components=1 \
-# 	&& rm "node-v6.0.0-linux-x86.tar.gz" \
+RUN curl -SLO "http://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x86.tar.gz" \
+	# && echo "4382b7366f3448d42f09d63f7dfccf45bf67f8be94d2bfe7203bdc79d0ae64e8  node-v${NODE_VERSION}-linux-x86.tar.gz" | sha256sum -c - \
+	&& tar -xzf "node-v${NODE_VERSION}-linux-x86.tar.gz" -C /usr/local --strip-components=1 \
+	&& rm "node-v${NODE_VERSION}-linux-x86.tar.gz"
 RUN npm install mraa --save \
 	&& npm cache clear \
 	&& npm config set unsafe-perm true -g --unsafe-perm \
