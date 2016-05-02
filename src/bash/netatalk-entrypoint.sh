@@ -32,7 +32,16 @@ echo ---end---avahi-daemon.conf--
 mkdir /var/run/dbus
 dbus-daemon --system
 if [ "${AVAHI}" == "1" ]; then
-    avahi-daemon -D
+    #!/bin/bash
+    set -e
+
+    # Set host-name and enable-dbus
+    sed -i -e "s@#enable-dbus=yes@enable-dbus=no@" -e "s@#host-name=foo@host-name=$(echo $RESIN_DEVICE_NAME | cut -c1-7)@" /etc/avahi/avahi-daemon.conf
+
+    # Restart service
+    /etc/init.d/avahi-daemon restart
+
+    bash
 else
     echo "Skipping avahi daemon, enable with env variable AVAHI=1"
 fi;
