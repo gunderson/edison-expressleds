@@ -1,22 +1,19 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-node:latest
+# Gets latest base image from https://registry.hub.docker.com/u/resin/edison-node/
+FROM resin/edison-node:latest
 
-RUN apt-get update && apt-get install -yq \
-   sqlite3 && \
-   apt-get clean && rm -rf /var/lib/apt/lists/*
+# Enable systemd
+ENV INITSYSTEM on
 
-# Defines our working directory in container
-# WORKDIR /usr/src/app
+# Copy package.json to root of container
+# This is copied independently for better caching.
+COPY package.json /usr/src/app/package.json
 
-# Copies the package.json first for better cache on later pushes
-COPY package.json package.json
+WORKDIR /usr/src/app
+# install all npm (node.js) dependencies
+RUN npm install
 
-# This install npm dependencies on the resin.io build server,
-# making sure to clean up the artifacts it creates in order to reduce the image size.
-RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
+# Copy our node.js source code into /usr/src/app
+COPY app/ /usr/src/app
 
-# This will copy all files in our root to the working  directory in the container
-COPY . ./
-
-# server.js will run when container starts up on the device
-EXPOSE 3000
-CMD ["npm", "start"]
+# Run the main.js script when the container starts on the device.
+CMD ["node", "/usr/src/app/js/main.js"]
