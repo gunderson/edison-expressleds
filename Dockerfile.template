@@ -11,7 +11,7 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:latest
 ######## FROM debian:jessie
 
 # Enable systemd init system in container
-ENV INITSYSTEM=on
+# ENV INITSYSTEM=on
 
 ENV NETATALK_VERSION 3.1.8
 ENV libevent_version 2.0.22-stable
