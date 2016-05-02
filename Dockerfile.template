@@ -1,3 +1,6 @@
+## ---------------------------------------------------
+## START MONGO
+
 FROM debian:wheezy
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
@@ -56,6 +59,9 @@ CMD ["mongod"]
 
 
 
+## END MONGO
+## ---------------------------------------------------
+## START NETATALK
 
 
 
@@ -132,7 +138,6 @@ RUN ./configure \
                   &&  rm -rf /var/lib/apt/lists* \
                    &&  mkdir /media/share
 
-RUN libtool --finish /usr/lib/netatalk/
 
 COPY src/bash/netatalk-entrypoint.sh /netatalk-entrypoint.sh
 COPY src/etc/afp.conf /etc/afp.conf
@@ -182,9 +187,6 @@ RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf
 
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
-
-## TODO: clean up unneeded apt packages
-
 
 # index.js will run when container starts up on the device
 EXPOSE 3000

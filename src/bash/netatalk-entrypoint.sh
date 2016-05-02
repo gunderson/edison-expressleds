@@ -36,8 +36,7 @@ if [ "${AVAHI}" == "1" ]; then
     set -e
 
     # Set host-name and enable-dbus
-    # sed -i -e "s@#enable-dbus=yes@enable-dbus=no@" -e "s@#host-name=foo@host-name=$(echo $RESIN_DEVICE_NAME | cut -c1-7)@" /etc/avahi-daemon.conf
-    sed -i -e "s@#enable-dbus=yes@enable-dbus=no@" -e "s@#host-name=testbed@host-name=local@" /etc/avahi-daemon.conf
+    sed -i -e "s@#enable-dbus=yes@enable-dbus=no@" -e "s@#host-name=foo@host-name=$(echo $RESIN_DEVICE_UUID | cut -c1-7)@" /etc/avahi-daemon.conf
 
     echo "s@#host-name=testbed@host-name=local@"
 
