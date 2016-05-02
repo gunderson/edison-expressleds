@@ -11,11 +11,6 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:latest
 ## START NETATALK
 # taken from https://github.com/cptactionhank/docker-netatalk/blob/master/Dockerfile
 
-######## FROM debian:jessie
-
-# Enable systemd init system in container
-# ENV INITSYSTEM=on
-
 ENV NETATALK_VERSION 3.1.8
 ENV libevent_version 2.0.22-stable
 
@@ -83,7 +78,7 @@ RUN ./configure \
 
 EXPOSE 548 636
 
-ENTRYPOINT ["/netatalk-entrypoint.sh"]
+CMD ["/netatalk-entrypoint.sh"]
 
 
 ## END NETATALK
