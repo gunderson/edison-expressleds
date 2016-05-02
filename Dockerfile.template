@@ -95,10 +95,6 @@ RUN apt-get update && apt-get install -y \
 ## ---------------------------------------------------
 ## START NODE
 
-
-# Enable systemd init system in container
-ENV INITSYSTEM=on
-
 # Defines our working directory in container
 WORKDIR /usr/src/app
 
