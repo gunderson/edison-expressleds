@@ -6,7 +6,7 @@ ENV INITSYSTEM on
 # Your code goes here
 RUN apt-get update && apt-get install nodejs python2.7-dev
 
-RUN apt-get install git cmake swig ntp \
+RUN apt-get install git cmake swig ntp
 RUN git clone https://github.com/intel-iot-devkit/mraa.git \
 && cd mraa \
 && mkdir build \
