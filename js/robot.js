@@ -1,21 +1,19 @@
 var five = require("johnny-five");
 var Edison = require("edison-io");
 var _ = require("lodash");
-var leds = new five.Leds([3,4,5,6,7,8,9,10,11]);
 var currentLEDIndex = 0;
 var frameDuration = 1/60;
 var currentInterval = null;
-
-var board = new five.Board({
-  io: new Edison()
-});
-
-board.on("ready", function() {
-  setup();
-});
+var leds, board;
 
 function setup(){
-  play();
+  board = new five.Board({
+    io: new Edison()
+  });
+  board.on("ready", function() {
+    leds = new five.Leds([3,4,5,6,7,8,9,10,11]);
+    play();
+  });
 }
 
 function loop(){
@@ -36,7 +34,8 @@ function stop(){
   currentInterval = null;
 }
 
-module.exports = _.extend(board,{
+module.exports = {
+  setup,
   play,
   stop
-});
+};
