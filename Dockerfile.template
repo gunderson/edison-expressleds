@@ -16,9 +16,8 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
 ENV INITSYSTEM on
 
 # Your code goes here
-RUN apt-get update && apt-get install python2.7-dev
 
-RUN apt-get install git cmake swig ntp
+RUN apt-get install libpcre3-dev git cmake swig ntp python2.7-dev libpcre3-dev
 RUN git clone https://github.com/intel-iot-devkit/mraa.git \
 && cd mraa \
 && mkdir build \
