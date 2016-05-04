@@ -2,7 +2,9 @@ var five = require("johnny-five");
 var Edison = require("edison-io");
 var _ = require("lodash");
 var currentLEDIndex = 0;
-var frameDuration = 1/60;
+var startTime = 0;
+
+var tickDuration = 1/60;
 var currentInterval = null;
 var leds, board;
 
@@ -17,17 +19,21 @@ function setup(){
 }
 
 function loop(){
+  var playTime = Date.now() - startTime;
+  var currentTick = Math.floor(playTime / tickDuration);
+
   leds.each((led)=>{
       led.off();
   });
   leds[currentLEDIndex].on();
-  currentLEDIndex = (currentLEDIndex + 1) % leds.length;
-  console.log("loop")
+  currentLEDIndex = (currentTick) % leds.length;
+  console.log("loop");
 }
 
 function play(){
   if (currentInterval) return;
-  currentInterval = setInterval(loop, frameDuration);
+  startTime = Date.now();
+  currentInterval = setInterval(loop, tickDuration);
 }
 
 function stop(){
