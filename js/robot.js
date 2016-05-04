@@ -22,6 +22,7 @@ function loop(){
   });
   leds[currentLEDIndex].on();
   currentLEDIndex = (currentLEDIndex + 1) % leds.length;
+  console.log("loop")
 }
 
 function play(){
