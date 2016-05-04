@@ -1,10 +1,10 @@
 # Gets latest base image from https://registry.hub.docker.com/u/resin/edison-node/
-FROM resin/edison-debian:latest
+FROM resin/edison-node:latest
 # Enable systemd
 ENV INITSYSTEM on
 
 # Your code goes here
-RUN apt-get update && apt-get install nodejs python2.7-dev
+RUN apt-get update && apt-get install python2.7-dev
 
 RUN apt-get install git cmake swig ntp
 RUN git clone https://github.com/intel-iot-devkit/mraa.git \
@@ -15,19 +15,16 @@ RUN git clone https://github.com/intel-iot-devkit/mraa.git \
 && make \
 && make install
 
-RUN npm install -g n
-RUN n stable
-
 # Copy package.json to root of container
 # This is copied independently for better caching.
-COPY package.json /usr/src/app/package.json
+COPY package.json /package.json
+
+# Copy our node.js source code
+COPY . ./
 
 WORKDIR /usr/src/app
 # install all npm (node.js) dependencies
 RUN npm install
 
-# Copy our node.js source code into /usr/src/app
-COPY app/ /usr/src/app
-
 # Run the main.js script when the container starts on the device.
-CMD ["node", "/usr/src/app/js/main.js"]
+CMD ["npm", "start"]
