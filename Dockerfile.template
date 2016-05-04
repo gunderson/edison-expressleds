@@ -17,7 +17,7 @@ ENV INITSYSTEM on
 
 # Your code goes here
 
-RUN apt-get update && apt-get install libpcre3-dev git make cmake gcc build-essential g++ swig ntp python2.7-dev 
+RUN apt-get update && apt-get install libpcre3-dev git make cmake gcc build-essential g++ swig ntp python2.7-dev
 RUN git clone https://github.com/intel-iot-devkit/mraa.git \
 && cd mraa \
 && mkdir build \
@@ -27,7 +27,7 @@ RUN git clone https://github.com/intel-iot-devkit/mraa.git \
 && make install
 
 # Copy our node.js source code
-COPY . ./
+COPY . ./usr/src/app
 
 # install all npm (node.js) dependencies
 RUN npm install

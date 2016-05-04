@@ -16,7 +16,6 @@
         "lodash": "^4.11.2",
         "node-sass": "*",
         "gulp": "*",
-        "gulp-sass": "*",
-        "mraa": "*"
+        "gulp-sass": "*"
     }
 }
