@@ -17,7 +17,7 @@ ENV INITSYSTEM on
 
 # Your code goes here
 
-RUN apt-get install libpcre3-dev git cmake swig ntp python2.7-dev libpcre3-dev
+RUN apt-get update && apt-get install libpcre3-dev git make swig ntp python2.7-dev libpcre3-dev
 RUN git clone https://github.com/intel-iot-devkit/mraa.git \
 && cd mraa \
 && mkdir build \
@@ -26,17 +26,11 @@ RUN git clone https://github.com/intel-iot-devkit/mraa.git \
 && make \
 && make install
 
-# Copy package.json to root of container
-# This is copied independently for better caching.
-COPY package.json /package.json
-
 # Copy our node.js source code
 COPY . ./
 
 # install all npm (node.js) dependencies
 RUN npm install
-
-WORKDIR /usr/src/app
 
 # Run the main.js script when the container starts on the device.
 CMD ["npm", "start"]
