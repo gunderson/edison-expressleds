@@ -30,7 +30,7 @@ RUN git clone https://github.com/intel-iot-devkit/mraa.git \
 COPY . ./usr/src/app
 
 # install all npm (node.js) dependencies
-RUN npm install
+RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
 
 # Run the main.js script when the container starts on the device.
 CMD ["npm", "start"]
