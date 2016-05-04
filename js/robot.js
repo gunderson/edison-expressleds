@@ -1,14 +1,42 @@
-var mraa = require('mraa'); //require mraa
-console.log('MRAA Version: ' + mraa.getVersion()); //write the mraa version to resin.io dashboard logs
+var five = require("johnny-five");
+var Edison = require("edison-io");
+var _ = require("lodash");
+var leds = new five.Leds([3,4,5,6,7,8,9,10,11]);
+var currentLEDIndex = 0;
+var frameDuration = 1/60;
+var currentInterval = null;
 
-var myOnboardLed = new mraa.Gpio(13); //LED hooked up to digital pin 13
-myOnboardLed.dir(mraa.DIR_OUT); //set the gpio direction to output
-var ledState = true; //Boolean to hold the state of Led
+var board = new five.Board({
+  io: new Edison()
+});
 
-periodicActivity(); //call the periodicActivity function
+board.on("ready", function() {
+  setup();
+});
 
-function periodicActivity() {
-    myOnboardLed.write(ledState ? 1 : 0); //if ledState is true then write a '1' (high) otherwise write a '0' (low)
-    ledState = !ledState; //invert the ledState
-    setTimeout(periodicActivity, 1000); //call the indicated function after 1 second (1000 milliseconds)
+function setup(){
+  play();
 }
+
+function loop(){
+  leds.each((led)=>{
+      led.off();
+  });
+  leds[currentLEDIndex].on();
+  currentLEDIndex = (currentLEDIndex + 1) % leds.length;
+}
+
+function play(){
+  if (currentInterval) return;
+  currentInterval = setInterval(loop, frameDuration);
+}
+
+function stop(){
+  clearInterval(currentInterval);
+  currentInterval = null;
+}
+
+module.exports = _.extend(board,{
+  play,
+  stop
+});
