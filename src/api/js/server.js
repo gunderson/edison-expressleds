@@ -1,3 +1,6 @@
+/*jslint node:true, vars:true, bitwise:true, unparam:true */
+/*jshint unused:true */
+
 var _ = require("lodash");
 var BackboneEvents = require("backbone-events-standalone");
 var express = require('express');
@@ -11,12 +14,18 @@ app.get('/', function(req, res) {
 app.get("/trigger-led/:id", function(req, res) {
     app.trigger("led", req.params.id);
 });
+
 app.get("/play", function(req, res) {
-    res.send({play});
+    res.send({
+        play: true
+    });
     app.trigger("play", req.params.id);
 });
+
 app.get("/stop", function(req, res) {
-    res.send({stop});
+    res.send({
+        stop: true
+    });
     app.trigger("stop", req.params.id);
 });
 

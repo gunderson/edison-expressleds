@@ -1,3 +1,6 @@
+/*jslint node:true, vars:true, bitwise:true, unparam:true */
+/*jshint unused:true */
+
 "use strict";
 var _ = require("lodash");
 var BackboneEvents = require("backbone-events-standalone");
