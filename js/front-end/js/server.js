@@ -8,7 +8,7 @@ var express = require('express'),
     sass = require('node-sass'),
     path = require('path');
 
-var app = express.createServer();
+var app = express();
 app = _.extend(app, BackboneEvents);
 
 app.configure(function() {
