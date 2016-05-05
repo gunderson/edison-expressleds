@@ -8,7 +8,7 @@ var Robot = function(){
   var currentLEDIndex = 0;
   var startTime = 0;
 
-  var tickDuration = 1/60;
+  var tickDuration = 1000/60;
   var currentTimeout = null;
   var leds, board;
 
