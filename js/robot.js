@@ -5,17 +5,15 @@ var Edison = require("edison-io");
 var _ = require("lodash");
 
 var Robot = function(){
-
-  BackboneEvents.mixin(this);
-
   var currentLEDIndex = 0;
   var startTime = 0;
 
   var tickDuration = 1/60;
-  var currentInterval = null;
+  var currentTimeout = null;
   var leds, board;
 
   function setup(){
+    console.log("setup");
     board = new five.Board({
       io: new Edison()
     });
@@ -27,28 +25,33 @@ var Robot = function(){
   }
 
   function loop(){
+    console.log("loop");
     var playTime = Date.now() - startTime;
     var currentTick = Math.floor(playTime / tickDuration);
+    var nextTickTime = startTime + ((currentTick + 1) * tickDuration);
 
     leds.each((led)=>{
         led.off();
     });
     leds[currentLEDIndex].on();
     currentLEDIndex = (currentTick) % leds.length;
-    console.log("loop");
+
+    currentTimeout = setTimeout(loop, nextTickTime - Date.now());
     return this;
   }
 
   function play(){
-    if (currentInterval) return;
+    console.log("play");
+    if (currentTimeout) return;
     startTime = Date.now();
-    currentInterval = setInterval(loop, tickDuration);
+    currentTimeout = setTimeout(loop, tickDuration);
     return this;
   }
 
   function stop(){
-    clearInterval(currentInterval);
-    currentInterval = null;
+    console.log("stop");
+    clearTimeout(currentTimeout);
+    currentTimeout = null;
     return this;
   }
 
@@ -60,7 +63,8 @@ var Robot = function(){
   this.board = board;
 
   return this;
+};
 
-}
+BackboneEvents.mixin(Robot.prototype);
 
 module.exports = Robot;
