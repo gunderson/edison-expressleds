@@ -36,6 +36,7 @@ function play() {
 
 function stop() {
     clearInterval(interval);
+    interval = null;
 }
 
 function loop() {
