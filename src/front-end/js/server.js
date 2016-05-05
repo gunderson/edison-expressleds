@@ -40,7 +40,7 @@ app.use(
     })
 );
 
-app.use('/js', browserify(__dirname + '/public/javascripts'));
+app.use('/js', browserify(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
