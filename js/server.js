@@ -8,13 +8,17 @@ app.get('/', function(req, res) {
     res.send('Hello World!');
 });
 
-app.get("/play", function(){
+app.get("/play", function(req, res){
   app.trigger("play");
+  console.log("play");
+  res.send({play:true});
 });
 
 
-app.get("/stop", function(){
+app.get("/stop", function(req, res){
   app.trigger("stop");
+  console.log("stop");
+  res.send({stop:true});
 });
 
 app.listen(3000, function() {
