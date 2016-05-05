@@ -1,4 +1,5 @@
 var server = require("./server");
 var robot = require("./robot");
 
-robot.setup();
+server.on("play", robot.play);
+server.on("stop", robot.stop);
