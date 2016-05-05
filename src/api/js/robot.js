@@ -6,7 +6,9 @@ var _ = require("lodash");
 var five = require("johnny-five");
 var Edison = require("edison-io");
 var board = new five.Board({
-    io: new Edison()
+    io: new Edison(),
+    repl: false,
+    debug: false,
 });
 
 var currentLEDIndex = 0;
