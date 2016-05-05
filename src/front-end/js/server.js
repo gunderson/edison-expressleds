@@ -20,7 +20,7 @@ var express = require('express'),
 var app = express();
 app = _.extend(app, BackboneEvents);
 
-app.set('views', __dirname + '/../jade');
+app.set('views', __dirname + '/../jade/');
 app.set('view engine', 'pug');
 app.use(methodOverride());
 // parse application/x-www-form-urlencoded
@@ -45,7 +45,7 @@ app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
 
 
 app.get('/', function(req, res) {
-    res.render("index");
+    res.render("index.jade");
 });
 
 app.listen(80, function() {
