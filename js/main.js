@@ -1,5 +1,9 @@
-var server = require("./server");
-var robot = new require("./robot")();
+"use strict";
 
-server.on("play", robot.play);
-server.on("stop", robot.stop);
+var robot = require("./api/js/robot");
+var apiServer = require("./api/js/server");
+var appServer = require("./front-end/js/server");
+
+apiServer.on("led", (id) => {
+    robot.triggerLed(id);
+});
