@@ -38,10 +38,9 @@ app.use(
         debug: true,
     })
 );
+
 app.use(multer());
-
-app.use(express.logger('dev'));
-
+app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
 
 
