@@ -22,9 +22,10 @@ board.on("ready", setup);
 
 function setup() {
     leds = new five.Leds([13]);
-    setInterval(() => {
-        leds[0].toggle();
-    }, 1000);
+    leds[0].blink(500);
+    // setInterval(() => {
+    //     leds[0].toggle();
+    // }, 1000);
 }
 
 
