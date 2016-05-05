@@ -15,7 +15,7 @@ app = _.extend(app, BackboneEvents);
 
 app.set('views', __dirname + '../jade');
 app.set('view engine', 'jade');
-app.use(express.methodOverride());
+app.use(methodOverride());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
         extended: false
