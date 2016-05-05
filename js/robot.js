@@ -43,7 +43,7 @@ var Robot = function(){
   function play(){
     if (currentTimeout) return;
     startTime = Date.now();
-    console.log("Robot::play", startTime);
+    console.log("Robot::play", startTime, tickDuration);
     currentTimeout = setTimeout(loop, tickDuration);
     return this;
   }
