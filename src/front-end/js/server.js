@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
 
 
 app.get('/', function(req, res) {
-    res.send("../jade/index.jade");
+    res.render("../jade/index");
 });
 
 app.listen(80, function() {
