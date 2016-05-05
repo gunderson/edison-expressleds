@@ -11,24 +11,22 @@ var express = require('express'),
 var app = express();
 app = _.extend(app, BackboneEvents);
 
-app.configure(function() {
-    app.set('views', __dirname + '../jade');
-    app.set('view engine', 'jade');
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
+app.set('views', __dirname + '../jade');
+app.set('view engine', 'jade');
+app.use(express.bodyParser());
+app.use(express.methodOverride());
 
-    app.use(
-        sass.middleware({
-            src: __dirname + '../sass',
-            dest: __dirname + '../../../public/styles',
-            prefix: '/styles',
-            debug: true,
-        })
-    );
+app.use(
+    sass.middleware({
+        src: __dirname + '../sass',
+        dest: __dirname + '../../../public/styles',
+        prefix: '/styles',
+        debug: true,
+    })
+);
 
-    app.use(express.static(path.join(__dirname, '../../../public')));
+app.use(express.static(path.join(__dirname, '../../../public')));
 
-});
 
 app.get('/', function(req, res) {
     res.send("../jade/index.jade");
