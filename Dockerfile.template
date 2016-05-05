@@ -1,13 +1,4 @@
-# using https://github.com/resin-io-library/base-images/blob/master/node/edison/debian/6.0/wheezy/Dockerfile
-#FROM resin/edison-buildpack-deps:jessie
 FROM resin/edison-node:6.0.0
-
-# ENV NODE_VERSION 6.0.0
-#
-# RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x86.tar.gz" \
-# 	&& echo "51321999e9706d9c24ea3689a03d049ad96657933228d3ed25d7710bc5d9e9bc  node-v6.0.0-linux-x86.tar.gz" | sha256sum -c - \
-# 	&& tar -xzf "node-v$NODE_VERSION-linux-x86.tar.gz" -C /usr/local --strip-components=1 \
-# 	&& rm "node-v$NODE_VERSION-linux-x86.tar.gz"
 
 # Enable systemd
 ENV INITSYSTEM on
@@ -22,9 +13,6 @@ RUN git clone https://github.com/intel-iot-devkit/mraa.git \
 && cmake .. -DBUILDSWIGNODE=OFF -DCMAKE_INSTALL_PREFIX:PATH=/usr \
 && make \
 && make install --silent
-
-
-
 
 # Defines our working directory in container
 WORKDIR /usr/src/app
