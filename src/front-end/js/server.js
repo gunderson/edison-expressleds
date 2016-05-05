@@ -8,9 +8,9 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var methodOverride = require('method-override');
 var sassMiddleware = require('node-sass-middleware');
-var logger = require('morgan');
+// var logger = require('morgan');
 var favicon = require('serve-favicon');
-var multer = require('multer');
+// var multer = require('multer');
 var app = express();
 
 var express = require('express'),
@@ -39,8 +39,8 @@ app.use(
     })
 );
 
-app.use(multer());
-app.use(logger('dev'));
+// app.use(multer());
+// app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
 
 
