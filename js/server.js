@@ -2,7 +2,7 @@ var BackboneEvents = require("backbone-events-standalone");
 var express = require('express');
 var app = express();
 
-BackboneEvents.mixin(app);
+// BackboneEvents.mixin(app);
 
 app.get('/', function(req, res) {
     res.send('Hello World!');
