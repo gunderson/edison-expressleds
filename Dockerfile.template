@@ -14,14 +14,14 @@ ENV INITSYSTEM on
 
 # Your code goes here
 
-RUN apt-get update && apt-get install rsync libpcre3-dev git make cmake gcc build-essential g++ swig ntp python2.7-dev
-RUN git clone https://github.com/intel-iot-devkit/mraa.git \
-&& cd mraa \
-&& mkdir build \
-&& cd build \
-&& cmake .. -DBUILDSWIGNODE=OFF -DCMAKE_INSTALL_PREFIX:PATH=/usr \
-&& make \
-&& make install --silent
+# RUN apt-get update && apt-get install rsync libpcre3-dev git make cmake gcc build-essential g++ swig ntp python2.7-dev
+# RUN git clone https://github.com/intel-iot-devkit/mraa.git \
+# && cd mraa \
+# && mkdir build \
+# && cd build \
+# && cmake .. -DBUILDSWIGNODE=OFF -DCMAKE_INSTALL_PREFIX:PATH=/usr \
+# && make \
+# && make install --silent
 
 
 
@@ -35,10 +35,10 @@ COPY package.json /usr/src/app/package.json
 # This install npm dependencies on the resin.io build server,
 # making sure to clean up the artifacts it creates in order to reduce the image size.
 RUN JOBS=MAX npm install --production --unsafe-perm --loglevel error && npm cache clean && rm -rf /tmp/*
-RUN npm install mraa \
-  && npm cache clear \
-  && npm config set unsafe-perm true -g --unsafe-perm \
-  && rm -rf /tmp/*
+# RUN npm install mraa \
+#   && npm cache clear \
+#   && npm config set unsafe-perm true -g --unsafe-perm \
+#   && rm -rf /tmp/*
 
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
