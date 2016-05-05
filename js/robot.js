@@ -36,14 +36,14 @@ var Robot = function(){
     currentLEDIndex = (currentTick) % leds.length;
 
     currentTimeout = setTimeout(loop, nextTickTime - Date.now());
-    console.log("loop",currentTimeout);
+    console.log("loop",nextTickTime - Date.now());
     return this;
   }
 
   function play(){
-    console.log("play");
     if (currentTimeout) return;
     startTime = Date.now();
+    console.log("play", startTime);
     currentTimeout = setTimeout(loop, tickDuration);
     return this;
   }
