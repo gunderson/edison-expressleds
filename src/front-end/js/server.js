@@ -42,7 +42,7 @@ app.use(
 
 app.use('/js', babel({
     srcPath: path.resolve(__dirname, '../js'),
-    cachePath: path.resolve(__dirname, '../../../dist/front-end/js')
+    cachePath: path.resolve(__dirname, '../../../dist/front-end/js'),
     babelOptions: {
         presets: ['es2015']
     }
