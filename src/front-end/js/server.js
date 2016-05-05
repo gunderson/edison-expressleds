@@ -38,10 +38,11 @@ app.use(
 );
 
 app.use(jadeBrowserMiddleware(__dirname + '../jade/', {
-    dest: __dirname + '/public'
+    dest: __dirname + '../../public'
     namespace: 'templates',
     format: 'camelcase'
 }));
+
 app.use(express.logger('dev'));
 
 app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
