@@ -27,13 +27,13 @@ app.use(bodyParser.json())
 app.use(
     sassMiddleware({
         src: __dirname + '../sass',
-        dest: __dirname + '../../../public/styles',
+        dest: __dirname + '../../../dist/front-end/styles',
         prefix: '/styles',
         debug: true,
     })
 );
 
-app.use(express.static(path.join(__dirname, '../../../public')));
+app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
 
 
 app.get('/', function(req, res) {
