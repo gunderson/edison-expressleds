@@ -8,9 +8,8 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var methodOverride = require('method-override');
 var sassMiddleware = require('node-sass-middleware');
-// var logger = require('morgan');
+var browserify = require('browserify-middleware');
 var favicon = require('serve-favicon');
-// var multer = require('multer');
 var app = express();
 
 var express = require('express'),
@@ -36,12 +35,14 @@ app.use(
         dest: __dirname + '../../../dist/front-end/styles',
         prefix: '/styles',
         debug: true,
+        indentedSyntax: true,
+        sourceMap: true
     })
 );
 
-// app.use(multer());
-// app.use(logger('dev'));
+app.use('/js', browserify(__dirname + '/public/javascripts'));
 app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
+app.use(express.static(path.join(__dirname, 'node_modules')));
 
 
 app.get('/', function(req, res) {

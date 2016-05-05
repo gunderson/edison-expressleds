@@ -13,6 +13,7 @@
   "dependencies": {
     "backbone-events-standalone": "^0.2.7",
     "body-parser": "^1.15.0",
+    "browserify-middleware": "^7.0.0",
     "edison-io": "^0.9.4",
     "express": "^4.13.4",
     "graceful-fs": "^4.1.3",
@@ -29,6 +30,7 @@
     "node-sass-middleware": "^0.9.8",
     "pug": "^2.0.0-alpha6",
     "serialport": "*",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "zepto": "^1.0.1"
   }
 }
