@@ -21,7 +21,7 @@
         "johnny-five": "^0.9.44",
         "lodash": "^4.11.2",
         "method-override": "^2.3.5",
-        "mraa": "*",
+        "mraa": "^0.9.0",
         "node-sass": "*",
         "node-sass-middleware": "^0.9.8",
         "serialport": "*"
