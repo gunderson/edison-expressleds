@@ -26,12 +26,13 @@ var Robot = function(){
 
   function loop(){
     console.log("Robot::loop a");
-    var playTime = Date.now() - startTime;
+    var now = Date.now();
+    var playTime = now - startTime;
     console.log("Robot::loop playTime", playTime);
     var currentTick = Math.floor(playTime / tickDuration);
     console.log("Robot::loop currentTick", currentTick);
     var nextTickTime = startTime + ((currentTick + 1) * tickDuration);
-    console.log("Robot::loop nextTickTime", nextTickTime, Date.now(), nextTickTime - Date.now());
+    console.log("Robot::loop nextTickTime", nextTickTime, now, nextTickTime - now);
 
     leds.each((led)=>{
         led.off();
@@ -42,8 +43,8 @@ var Robot = function(){
     currentLEDIndex = (currentTick) % leds.length;
     console.log("Robot::loop g");
 
-    currentTimeout = setTimeout(loop, nextTickTime - Date.now());
-    console.log("Robot::loop",nextTickTime - Date.now());
+    currentTimeout = setTimeout(loop, nextTickTime - now);
+    console.log("Robot::loop",nextTickTime - now);
     return this;
   }
 
