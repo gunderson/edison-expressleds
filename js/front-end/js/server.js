@@ -4,6 +4,7 @@ var BackboneEvents = require("backbone-events-standalone");
 var express = require('express');
 var bodyParser = require('body-parser')
 var methodOverride = require('method-override');
+var sassMiddleware = require('node-sass-middleware')
 var app = express();
 
 var express = require('express'),
@@ -24,7 +25,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 
 app.use(
-    sass.middleware({
+    sassMiddleware({
         src: __dirname + '../sass',
         dest: __dirname + '../../../public/styles',
         prefix: '/styles',
