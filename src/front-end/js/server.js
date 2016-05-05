@@ -31,8 +31,8 @@ app.use(bodyParser.json());
 
 app.use(
     sassMiddleware({
-        src: __dirname + '../sass',
-        dest: __dirname + '../../../dist/front-end/css',
+        src: path.resolve(__dirname, '../sass'),
+        dest: path.resolve(__dirname, '../../../dist/front-end/css'),
         prefix: '/css',
         debug: true,
         indentedSyntax: true,
@@ -40,16 +40,16 @@ app.use(
     })
 );
 
-app.use('/js/', babel({
-    srcPath: '../js',
-    cachePath: __dirname + '/_cache'
+app.use('/js', babel({
+    srcPath: path.resolve(__dirname, '../js'),
+    cachePath: path.resolve(__dirname, '../../../dist/front-end/js')
     babelOptions: {
         presets: ['es2015']
     }
 }));
 
-app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
-app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.resolve(__dirname, '../../../dist/front-end')));
+app.use(express.static(path.resolve(__dirname, 'node_modules')));
 
 
 app.get('/', function(req, res) {
