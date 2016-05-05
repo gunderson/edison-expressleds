@@ -25,15 +25,22 @@ var Robot = function(){
   }
 
   function loop(){
+    console.log("Robot::loop a");
     var playTime = Date.now() - startTime;
+    console.log("Robot::loop b");
     var currentTick = Math.floor(playTime / tickDuration);
+    console.log("Robot::loop c");
     var nextTickTime = startTime + ((currentTick + 1) * tickDuration);
+    console.log("Robot::loop d");
 
     leds.each((led)=>{
         led.off();
     });
+    console.log("Robot::loop e");
     leds[currentLEDIndex].on();
+    console.log("Robot::loop f");
     currentLEDIndex = (currentTick) % leds.length;
+    console.log("Robot::loop d");
 
     currentTimeout = setTimeout(loop, nextTickTime - Date.now());
     console.log("Robot::loop",nextTickTime - Date.now());
