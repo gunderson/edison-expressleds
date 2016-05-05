@@ -32,15 +32,25 @@ app.use(bodyParser.json());
 app.use(
     sassMiddleware({
         src: __dirname + '../sass',
-        dest: __dirname + '../../../dist/front-end/styles',
-        prefix: '/styles',
+        dest: __dirname + '../../../dist/front-end/css',
+        prefix: '/css',
         debug: true,
         indentedSyntax: true,
         sourceMap: true
     })
 );
 
-app.use('/js', browserify(__dirname + '/public'));
+app.use(
+    browserify({
+        src: __dirname + './',
+        dest: __dirname + '../../../dist/front-end/js',
+        prefix: '/js',
+        debug: true,
+        indentedSyntax: true,
+        sourceMap: true
+    })
+);
+
 app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
