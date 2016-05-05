@@ -3,13 +3,13 @@ var _ = require("lodash");
 var BackboneEvents = require("backbone-events-standalone");
 var express = require('express');
 var app = express();
-app = _.extend(app, BackboneEvents);
 
 var express = require('express'),
     sass = require('node-sass'),
     path = require('path');
 
-var app = module.exports = express.createServer();
+var app = express.createServer();
+app = _.extend(app, BackboneEvents);
 
 app.configure(function() {
     app.set('views', __dirname + '../jade');
