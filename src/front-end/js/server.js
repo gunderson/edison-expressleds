@@ -7,7 +7,8 @@ var BackboneEvents = require("backbone-events-standalone");
 var express = require('express');
 var bodyParser = require('body-parser')
 var methodOverride = require('method-override');
-var sassMiddleware = require('node-sass-middleware')
+var sassMiddleware = require('node-sass-middleware');
+var jadeBrowserMiddleware = require('jade-browser-middleware')
 var app = express();
 
 var express = require('express'),
@@ -36,11 +37,18 @@ app.use(
     })
 );
 
+app.use(jadeBrowserMiddleware(__dirname + '../jade/', {
+    dest: __dirname + '/public'
+    namespace: 'templates',
+    format: 'camelcase'
+}));
+app.use(express.logger('dev'));
+
 app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
 
 
 app.get('/', function(req, res) {
-    res.render("../jade/index");
+    res.render("index");
 });
 
 app.listen(80, function() {
