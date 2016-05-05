@@ -31,7 +31,7 @@ var Robot = function(){
     var currentTick = Math.floor(playTime / tickDuration);
     console.log("Robot::loop currentTick", currentTick);
     var nextTickTime = startTime + ((currentTick + 1) * tickDuration);
-    console.log("Robot::loop nextTickTime", nextTickTime);
+    console.log("Robot::loop nextTickTime", nextTickTime, Date.now(), nextTickTime - Date.now());
 
     leds.each((led)=>{
         led.off();
