@@ -48,6 +48,8 @@ app.use('/js', babel({
     }
 }));
 
+console.log("PATH PATH PATH PATH", path.resolve(__dirname, '../js'))
+
 app.use(express.static(path.resolve(__dirname, '../../../dist/front-end')));
 app.use(express.static(path.resolve(__dirname, 'node_modules')));
 
