@@ -43,14 +43,14 @@ function loop() {
     var runTime = now - startTime;
     var tick = Math.floor(runTime / tickIntervalMillis);
     patternFunction(tick);
-    currentLEDIndex = (currentLEDIndex + 1);
 }
 
 function sweep(tick) {
     leds.each(function(led) {
         led.off();
-    })
+    });
     leds[tick % leds.length].on();
+    currentLEDIndex = (currentLEDIndex + 1);
 }
 
 function triggerLed(id) {
@@ -67,4 +67,4 @@ module.exports = {
     triggerLed,
     play,
     stop
-}
+};

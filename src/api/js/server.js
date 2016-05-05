@@ -12,9 +12,11 @@ app.get("/trigger-led/:id", function(req, res) {
     app.trigger("led", req.params.id);
 });
 app.get("/play", function(req, res) {
+    res.send({play});
     app.trigger("play", req.params.id);
 });
 app.get("/stop", function(req, res) {
+    res.send({stop});
     app.trigger("stop", req.params.id);
 });
 
