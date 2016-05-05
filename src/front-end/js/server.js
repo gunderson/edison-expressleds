@@ -40,16 +40,8 @@ app.use(
     })
 );
 
-app.use(
-    browserify({
-        src: __dirname + './',
-        dest: __dirname + '../../../dist/front-end/js',
-        prefix: '/js',
-        debug: true,
-        indentedSyntax: true,
-        sourceMap: true
-    })
-);
+
+app.use('/js', browserify(__dirname + '../js'));
 
 app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
