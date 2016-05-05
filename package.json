@@ -28,6 +28,7 @@
     "node-sass": "*",
     "node-sass-middleware": "^0.9.8",
     "pug": "^2.0.0-alpha6",
-    "serialport": "*"
+    "serialport": "*",
+    "serve-favicon": "^2.3.0"
   }
 }
