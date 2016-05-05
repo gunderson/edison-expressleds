@@ -21,19 +21,10 @@ var patternFunction = sweep;
 board.on("ready", setup);
 
 function setup() {
-    leds = new five.Leds([13]);
-    leds[0].blink(500);
-    // setInterval(() => {
-    //     leds[0].toggle();
-    // }, 1000);
+    currentLEDIndex = 0;
+    leds = new five.Leds([2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+    play();
 }
-
-
-// function setup() {
-//     currentLEDIndex = 0;
-//     leds = new five.Leds([2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
-//     play();
-// }
 
 function play() {
     if (interval) return;
