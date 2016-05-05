@@ -4,7 +4,8 @@
     "description": "Simple LED blink in node.js with resin.io on Intel Edison",
     "main": "main.js",
     "scripts": {
-        "start": "node /usr/src/app/src/main.js --harmony"
+        "____start": "node /usr/src/app/src/main.js --harmony",
+        "start": "node /usr/src/app/src/api/js/robot.js --harmony"
     },
     "author": "",
     "license": "ISC",
