@@ -23,7 +23,7 @@ app.configure(function() {
             dest: __dirname + '../../../public/styles',
             prefix: '/styles',
             debug: true,
-        });
+        })
     );
 
     app.use(express.static(path.join(__dirname, '../../../public')));
