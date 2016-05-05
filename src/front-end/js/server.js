@@ -8,8 +8,8 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var methodOverride = require('method-override');
 var sassMiddleware = require('node-sass-middleware');
-var browserify = require('browserify-middleware');
 var favicon = require('serve-favicon');
+var babel = require('babel-middleware');
 var app = express();
 
 var express = require('express'),
@@ -40,8 +40,13 @@ app.use(
     })
 );
 
-
-app.use('/js', browserify(__dirname + '../js'));
+app.use('/js/', babel({
+    srcPath: '../js',
+    cachePath: __dirname + '/_cache'
+    babelOptions: {
+        presets: ['es2015']
+    }
+}));
 
 app.use(express.static(path.join(__dirname, '../../../dist/front-end')));
 app.use(express.static(path.join(__dirname, 'node_modules')));

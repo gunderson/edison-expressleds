@@ -11,9 +11,9 @@
   "license": "ISC",
   "repository": "https://github.com/gunderson/edison-expressleds",
   "dependencies": {
+    "babel-middleware": "^0.3.4",
     "backbone-events-standalone": "^0.2.7",
     "body-parser": "^1.15.0",
-    "browserify-middleware": "^7.0.0",
     "edison-io": "^0.9.4",
     "express": "^4.13.4",
     "graceful-fs": "^4.1.3",
