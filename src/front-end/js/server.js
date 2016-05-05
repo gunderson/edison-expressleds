@@ -8,7 +8,9 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var methodOverride = require('method-override');
 var sassMiddleware = require('node-sass-middleware');
-var jadeBrowserMiddleware = require('jade-browser-middleware')
+var logger = require('morgan');
+var favicon = require('serve-favicon');
+var multer = require('multer');
 var app = express();
 
 var express = require('express'),
@@ -19,14 +21,14 @@ var app = express();
 app = _.extend(app, BackboneEvents);
 
 app.set('views', __dirname + '../jade');
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.use(methodOverride());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
-        extended: false
-    }))
-    // parse application/json
-app.use(bodyParser.json())
+    extended: false
+}));
+// parse application/json
+app.use(bodyParser.json());
 
 app.use(
     sassMiddleware({
@@ -36,12 +38,7 @@ app.use(
         debug: true,
     })
 );
-
-app.use(jadeBrowserMiddleware(__dirname + '../jade/', {
-    dest: __dirname + '../../public'
-    namespace: 'templates',
-    format: 'camelcase'
-}));
+app.use(multer());
 
 app.use(express.logger('dev'));
 
