@@ -10,14 +10,14 @@ app.get('/', function(req, res) {
 
 app.get("/play", function(req, res){
   app.trigger("play");
-  console.log("play");
+  console.log("server::play");
   res.send({play:true});
 });
 
 
 app.get("/stop", function(req, res){
   app.trigger("stop");
-  console.log("stop");
+  console.log("server::stop");
   res.send({stop:true});
 });
 

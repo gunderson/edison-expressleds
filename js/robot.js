@@ -13,7 +13,7 @@ var Robot = function(){
   var leds, board;
 
   function setup(){
-    console.log("setup");
+    console.log("Robot::setup");
     board = new five.Board({
       io: new Edison()
     });
@@ -36,20 +36,20 @@ var Robot = function(){
     currentLEDIndex = (currentTick) % leds.length;
 
     currentTimeout = setTimeout(loop, nextTickTime - Date.now());
-    console.log("loop",nextTickTime - Date.now());
+    console.log("Robot::loop",nextTickTime - Date.now());
     return this;
   }
 
   function play(){
     if (currentTimeout) return;
     startTime = Date.now();
-    console.log("play", startTime);
+    console.log("Robot::play", startTime);
     currentTimeout = setTimeout(loop, tickDuration);
     return this;
   }
 
   function stop(){
-    console.log("stop");
+    console.log("Robot::stop");
     clearTimeout(currentTimeout);
     currentTimeout = null;
     return this;
