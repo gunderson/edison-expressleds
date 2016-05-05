@@ -8,7 +8,7 @@ var Edison = require("edison-io");
 var board = new five.Board({
     io: new Edison(),
     repl: false,
-    debug: false,
+    //debug: false,
 });
 
 var currentLEDIndex = 0;
