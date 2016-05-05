@@ -20,7 +20,7 @@ var express = require('express'),
 var app = express();
 app = _.extend(app, BackboneEvents);
 
-app.set('views', __dirname + '../jade');
+app.set('views', __dirname + '/../jade');
 app.set('view engine', 'pug');
 app.use(methodOverride());
 // parse application/x-www-form-urlencoded
