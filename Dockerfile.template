@@ -1,6 +1,6 @@
 # using https://github.com/resin-io-library/base-images/blob/master/node/edison/debian/6.0/wheezy/Dockerfile
 #FROM resin/edison-buildpack-deps:jessie
-FROM resin/edison-node:6.6.0
+FROM resin/edison-node:6.0.0
 
 # ENV NODE_VERSION 6.0.0
 #
