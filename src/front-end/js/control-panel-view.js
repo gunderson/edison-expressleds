@@ -1,4 +1,4 @@
-var $ = require("zepto-node");
+var $ = require("jquery");
 var _ = require("lodash");
 
 
