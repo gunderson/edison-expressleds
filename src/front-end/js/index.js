@@ -1,1 +1,1 @@
-import * as controlPanelView from "./control-panel-view";
+import controlPanelView from "./control-panel-view";

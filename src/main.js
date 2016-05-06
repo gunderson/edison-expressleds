@@ -1,8 +1,8 @@
 "use strict";
 
-import * as robot from "./api/js/robot";
-import * as apiServer from "./api/js/server";
-import * as appServer from "./front-end/js/server";
+import robot from "./api/js/robot";
+import apiServer from "./api/js/server";
+import appServer from "./front-end/js/server";
 
 apiServer.on("led", robot.led);
 apiServer.on("play", robot.play);

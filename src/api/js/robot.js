@@ -1,7 +1,7 @@
 "use strict";
-import * as _ from "lodash";
-import * as five from "johnny-five";
-import * as Edison from "edison-io";
+import _ from "lodash";
+import five from "johnny-five";
+import Edison from "edison-io";
 
 
 var board = new five.Board({

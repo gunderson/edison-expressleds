@@ -1,6 +1,6 @@
-import * as $ from "jquery";
-import * as _ from "lodash";
-import * as io from "socket.io-client";
+import $ from "jquery";
+import _ from "lodash";
+import io from "socket.io-client";
 
 // var io = require("socket.io-client");
 

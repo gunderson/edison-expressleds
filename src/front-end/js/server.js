@@ -1,18 +1,15 @@
 "use strict";
-var _ = require("lodash");
-var BackboneEvents = require("backbone-events-standalone");
-var express = require('express');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var sassMiddleware = require('node-sass-middleware');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var babelify = require('express-babelify-middleware');
-
-var app = express();
-var express = require('express');
-var sass = require('node-sass');
-var path = require('path');
+import _ from "lodash";
+import BackboneEvents from "backbone-events-standalone";
+import express from "express";
+import bodyParser from "body-parser";
+import methodOverride from "method-override";
+import sassMiddleware from "node-sass-middleware";
+import favicon from "serve-favicon";
+import logger from "smorgan";
+import babelify from "express-babelify-middleware";
+import sass from "node-sass";
+import path from "path";
 
 var app = express();
 app = _.extend(app, BackboneEvents);
@@ -27,6 +24,9 @@ app.use(bodyParser.urlencoded({
 // parse application/json
 app.use(bodyParser.json());
 
+app.set('views', __dirname + '/../jade/');
+app.set('view engine', 'pug');
+
 app.use(
     sassMiddleware({
         src: path.resolve(__dirname, '../sass'),
@@ -40,15 +40,6 @@ app.use(
 
 app.use(express.static(path.resolve(__dirname, "../")));
 app.use(express.static(path.resolve(__dirname, '../../../node_modules')));
-
-// app.use('/js', babelify(
-//     path.resolve(__dirname, '../js')
-// ));
-
-
-
-app.set('views', __dirname + '/../jade/');
-app.set('view engine', 'pug');
 
 app.get('/', function(req, res) {
     res.render("index.jade");

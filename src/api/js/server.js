@@ -1,6 +1,6 @@
-import * as _ from "lodash";
-import * as BackboneEvents from "backbone-events-standalone";
-import * as express from "express";
+import _ from "lodash";
+import BackboneEvents from "backbone-events-standalone";
+import express from "express";
 
 var app = express();
 app = _.extend(app, BackboneEvents);
