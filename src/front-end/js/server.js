@@ -41,12 +41,15 @@ app.use(
     })
 );
 
-console.log("PATH PATH PATH PATH", path.resolve(__dirname, '../js'), path.resolve(__dirname, '../../../dist/front-end/js'))
-
-app.use('/js', babelify(path.resolve(__dirname, '../js')));
+console.log("PATH PATH PATH PATH", path.resolve(__dirname, '../js'), path.resolve(__dirname, '../../../node_modules'))
+app.use('/js', babelify([
+    path.resolve(__dirname, '../js'),
+    path.resolve(__dirname, '../../../node_modules')
+]));
 
 app.use(express.static(path.resolve(__dirname, '../../../dist/front-end')));
 app.use(express.static(path.resolve(__dirname, '../../../node_modules')));
+
 
 
 app.set('views', __dirname + '/../jade/');
