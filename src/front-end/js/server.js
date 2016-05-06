@@ -42,13 +42,9 @@ app.use(
 );
 
 console.log("PATH PATH PATH PATH", path.resolve(__dirname, '../js'), path.resolve(__dirname, '../../../node_modules'))
-app.use('/js', babelify([
-    path.resolve(__dirname, '../js'),
-    path.resolve(__dirname, '../../../node_modules')
-]));
-
-app.use(express.static(path.resolve(__dirname, '../../../dist/front-end')));
-app.use(express.static(path.resolve(__dirname, '../../../node_modules')));
+app.use('/js', babelify(
+    path.resolve(__dirname, '../js')
+));
 
 
 
@@ -59,6 +55,7 @@ app.get('/', function(req, res) {
     res.render("index.jade");
 });
 
+app.use(express.static(path.resolve(__dirname, '../../../dist/front-end')));
 app.listen(80, function() {
     console.log('Front-end server listening on port 80!');
 });
