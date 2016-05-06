@@ -1,4 +1,4 @@
-var $ = require("zepto.min");
+var $ = require("zepto");
 var _ = require("lodash");
 
 
