@@ -1,6 +1,3 @@
-/*jslint node:true, vars:true, bitwise:true, unparam:true */
-/*jshint unused:true */
-
 "use strict";
 var _ = require("lodash");
 var five = require("johnny-five");
@@ -17,7 +14,7 @@ var interval = null;
 
 var ticksPerSecond = 60;
 var tickIntervalMillis = 1000 / ticksPerSecond;
-var startTime = 0;
+var startTime = 0
 var patternFunction = sweep;
 
 board.on("ready", setup);
@@ -55,6 +52,7 @@ function sweep(tick) {
 }
 
 function triggerLed(id) {
+    id = id || 0;
     // stop loop
     stop();
     // kill other leds
