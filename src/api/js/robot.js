@@ -57,10 +57,10 @@ function led(model) {
     // stop loop
     stop();
     // kill other leds
-    leds.each((led) => led.[off]());
+    leds.each((led) => led["off"]());
     // start the led at id
     currentLEDIndex = id;
-    leds[currentLEDIndex].[model.state]();
+    leds[currentLEDIndex][model.state]();
 }
 
 module.exports = {
