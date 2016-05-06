@@ -38,6 +38,7 @@
     "serialport": "*",
     "serve-favicon": "^2.3.0",
     "socketio": "^1.0.0",
-    "zepto": "^1.0.1"
+    "zepto": "^1.0.1",
+    "zepto-node": "^1.0.0"
   }
 }

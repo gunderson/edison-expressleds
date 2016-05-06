@@ -2,7 +2,6 @@
 /*jshint unused:true */
 
 "use strict";
-var $ = require("zepto");
 var _ = require("lodash");
 var BackboneEvents = require("backbone-events-standalone");
 var express = require('express');
