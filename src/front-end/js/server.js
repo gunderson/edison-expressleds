@@ -9,7 +9,7 @@ var bodyParser = require('body-parser')
 var methodOverride = require('method-override');
 var sassMiddleware = require('node-sass-middleware');
 var favicon = require('serve-favicon');
-var babelMiddleware = require("babel-connect");
+var babel = require("babel-middleware");
 var app = express();
 
 var express = require('express'),
