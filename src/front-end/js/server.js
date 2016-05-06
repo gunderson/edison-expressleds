@@ -19,6 +19,7 @@ var express = require('express'),
 var app = express();
 app = _.extend(app, BackboneEvents);
 
+app.set("env", "development");
 app.set('views', __dirname + '/../jade/');
 app.set('view engine', 'pug');
 app.use(methodOverride());
@@ -49,11 +50,25 @@ app.use('/js', babel({
     debug: true
 }));
 
+if (app.get('env') === 'development') {
+
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+
+}
+
+
 console.log("PATH PATH PATH PATH", path.resolve(__dirname, '../js'), path.resolve(__dirname, '../../../dist/front-end/js'))
 
 app.use(express.static(path.resolve(__dirname, '../../../dist/front-end')));
 app.use(express.static(path.resolve(__dirname, 'node_modules')));
 
+app.use(logErrors);
 
 app.get('/', function(req, res) {
     res.render("index.jade");
