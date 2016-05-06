@@ -68,8 +68,6 @@ console.log("PATH PATH PATH PATH", path.resolve(__dirname, '../js'), path.resolv
 app.use(express.static(path.resolve(__dirname, '../../../dist/front-end')));
 app.use(express.static(path.resolve(__dirname, 'node_modules')));
 
-app.use(logErrors);
-
 app.get('/', function(req, res) {
     res.render("index.jade");
 });
