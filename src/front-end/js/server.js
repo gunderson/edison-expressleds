@@ -2,7 +2,7 @@
 var _ = require("lodash");
 var BackboneEvents = require("backbone-events-standalone");
 var express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var sassMiddleware = require('node-sass-middleware');
 var favicon = require('serve-favicon');
@@ -10,9 +10,9 @@ var logger = require('morgan');
 var babelify = require('express-babelify-middleware');
 
 var app = express();
-var express = require('express'),
-    sass = require('node-sass'),
-    path = require('path');
+var express = require('express');
+var sass = require('node-sass');
+var path = require('path');
 
 var app = express();
 app = _.extend(app, BackboneEvents);
@@ -22,7 +22,7 @@ app.use(methodOverride());
 app.set("env", "development");
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: false,
 }));
 // parse application/json
 app.use(bodyParser.json());
@@ -34,7 +34,7 @@ app.use(
         prefix: '/css',
         debug: true,
         indentedSyntax: true,
-        sourceMap: true
+        sourceMap: true,
     })
 );
 
