@@ -9,12 +9,10 @@ var bodyParser = require('body-parser')
 var methodOverride = require('method-override');
 var sassMiddleware = require('node-sass-middleware');
 var favicon = require('serve-favicon');
-var babel = require("babel-middleware");
-var browserify = require('browserify-middleware');
 var logger = require('morgan');
+var babelify = require('express-babelify-middleware');
 
 var app = express();
-
 var express = require('express'),
     sass = require('node-sass'),
     path = require('path');
@@ -43,16 +41,7 @@ app.use(
     })
 );
 
-// app.use('/js', babel({
-//     srcPath: path.resolve(__dirname, '../js'),
-//     cachePath: path.resolve(__dirname, '../../../dist/front-end/js'),
-//     babelOptions: {
-//         presets: ['es2015']
-//     },
-//     debug: true
-// }));
-
-app.use('/js', browserify(path.resolve(__dirname, '../../../dist/front-end/js')));
+app.use('/**/*.js', babelify('../../../dist/front-end/js'));
 
 console.log("PATH PATH PATH PATH", path.resolve(__dirname, '../js'), path.resolve(__dirname, '../../../dist/front-end/js'))
 
