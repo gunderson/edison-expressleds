@@ -60,7 +60,7 @@ function led(model) {
     // kill other leds
     leds.each((led) => led.off());
     // start the led at id
-    currentLEDIndex = id;
+    currentLEDIndex = model.id;
     leds[currentLEDIndex][model.state]();
 }
 

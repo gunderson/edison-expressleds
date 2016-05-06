@@ -11,10 +11,9 @@ $("button.play").click(() => $.get("http://10.0.1.8:3000/play"));
 $("button.stop").click(() => $.get("http://10.0.1.8:3000/stop"));
 
 $("input[type=checkbox]").change((el) => {
-    var $el = $(el);
-    if ($el.is(":checked")) {
-        $.get(`http://10.0.1.8:3000/led/${ $el.val() }/on`);
+    if (this.checked) {
+        $.get(`http://10.0.1.8:3000/led/${ this.value }/on`);
     } else {
-        $.get(`http://10.0.1.8:3000/led/${ $el.val() }/off`);
+        $.get(`http://10.0.1.8:3000/led/${ this.value }/off`);
     }
 });
