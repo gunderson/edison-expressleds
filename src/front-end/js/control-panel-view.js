@@ -13,7 +13,7 @@ var localPort = "3000";
 $("button.play").click(() => $.get(`http://${localIp}:${localPort}/play`));
 $("button.stop").click(() => $.get(`http://${localIp}:${localPort}/stop`));
 
-$("input[type=checkbox]").change((el) => {
+$("input[type=checkbox]").change((i,el) => {
     if (el.checked) {
         $.get(`http://${localIp}:${localPort}/led/${ el.value }/on`);
     } else {
