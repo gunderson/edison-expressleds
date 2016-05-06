@@ -1,1 +1,1 @@
-var controlPanelView = require("control-panel-view");
+var controlPanelView = require("./control-panel-view");
