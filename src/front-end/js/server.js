@@ -10,6 +10,9 @@ var methodOverride = require('method-override');
 var sassMiddleware = require('node-sass-middleware');
 var favicon = require('serve-favicon');
 var babel = require("babel-middleware");
+var browserify = require('browserify-middleware');
+var logger = require('morgan');
+
 var app = express();
 
 var express = require('express'),
@@ -18,11 +21,10 @@ var express = require('express'),
 
 var app = express();
 app = _.extend(app, BackboneEvents);
+app.use(logger('dev'));
+app.use(methodOverride());
 
 app.set("env", "development");
-app.set('views', __dirname + '/../jade/');
-app.set('view engine', 'pug');
-app.use(methodOverride());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
     extended: false
@@ -41,19 +43,25 @@ app.use(
     })
 );
 
-app.use('/js', babel({
-    srcPath: path.resolve(__dirname, '../js'),
-    cachePath: path.resolve(__dirname, '../../../dist/front-end/js'),
-    babelOptions: {
-        presets: ['es2015']
-    },
-    debug: true
-}));
+// app.use('/js', babel({
+//     srcPath: path.resolve(__dirname, '../js'),
+//     cachePath: path.resolve(__dirname, '../../../dist/front-end/js'),
+//     babelOptions: {
+//         presets: ['es2015']
+//     },
+//     debug: true
+// }));
+
+app.use('/js', browserify(path.resolve(__dirname, '../../../dist/front-end/js')));
 
 console.log("PATH PATH PATH PATH", path.resolve(__dirname, '../js'), path.resolve(__dirname, '../../../dist/front-end/js'))
 
 app.use(express.static(path.resolve(__dirname, '../../../dist/front-end')));
 app.use(express.static(path.resolve(__dirname, '../../../node_modules')));
+
+
+app.set('views', __dirname + '/../jade/');
+app.set('view engine', 'pug');
 
 app.get('/', function(req, res) {
     res.render("index.jade");
