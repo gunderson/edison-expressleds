@@ -1,7 +1,9 @@
 "use strict";
-var _ = require("lodash");
-var five = require("johnny-five");
-var Edison = require("edison-io");
+import * as _ from "lodash";
+import * as five from "johnny-five";
+import * as Edison from "edison-io";
+
+
 var board = new five.Board({
     io: new Edison(),
     repl: false,

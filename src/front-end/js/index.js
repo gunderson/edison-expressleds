@@ -1,1 +1,1 @@
-var controlPanelView = require("./control-panel-view");
+import * as controlPanelView from "./control-panel-view";

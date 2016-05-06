@@ -1,9 +1,7 @@
-/*jslint node:true, vars:true, bitwise:true, unparam:true */
-/*jshint unused:true */
+import * as _ from "lodash";
+import * as BackboneEvents from "backbone-events-standalone";
+import * as express from "express";
 
-var _ = require("lodash");
-var BackboneEvents = require("backbone-events-standalone");
-var express = require('express');
 var app = express();
 app = _.extend(app, BackboneEvents);
 

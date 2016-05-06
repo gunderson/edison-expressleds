@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(
     sassMiddleware({
         src: path.resolve(__dirname, '../sass'),
-        dest: path.resolve(__dirname, '../../../dist/front-end/css'),
+        dest: path.resolve(__dirname, '../css'),
         prefix: '/css',
         debug: true,
         indentedSyntax: true,
@@ -38,13 +38,12 @@ app.use(
     })
 );
 
-app.use(express.static(path.resolve(__dirname, '../../../dist/front-end')));
-
+app.use(express.static(path.resolve(__dirname, "../")));
 app.use(express.static(path.resolve(__dirname, '../../../node_modules')));
 
-app.use('/js', babelify(
-    path.resolve(__dirname, '../js')
-));
+// app.use('/js', babelify(
+//     path.resolve(__dirname, '../js')
+// ));
 
 
 

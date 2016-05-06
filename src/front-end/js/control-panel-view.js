@@ -1,5 +1,7 @@
-var $ = require("jquery");
-var _ = require("lodash");
+import * as $ from "jquery";
+import * as _ from "lodash";
+import * as io from "socket.io-client";
+
 // var io = require("socket.io-client");
 
 // var socket = io('http://localhost');
