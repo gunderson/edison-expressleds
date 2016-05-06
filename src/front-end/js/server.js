@@ -45,10 +45,11 @@ app.use('/js', babel({
     cachePath: path.resolve(__dirname, '../../../dist/front-end/js'),
     babelOptions: {
         presets: ['es2015']
-    }
+    },
+    debug: true
 }));
 
-console.log("PATH PATH PATH PATH", path.resolve(__dirname, '../js'))
+console.log("PATH PATH PATH PATH", path.resolve(__dirname, '../js'), path.resolve(__dirname, '../../../dist/front-end/js'))
 
 app.use(express.static(path.resolve(__dirname, '../../../dist/front-end')));
 app.use(express.static(path.resolve(__dirname, 'node_modules')));
