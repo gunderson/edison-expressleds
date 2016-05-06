@@ -17,14 +17,14 @@ app.get("/led/:id/:state", function(req, res) {
 
 app.get("/play", function(req, res) {
     res.send({
-        play: true
+        play: true,
     });
     app.trigger("play", req.params.id);
 });
 
 app.get("/stop", function(req, res) {
     res.send({
-        stop: true
+        stop: true,
     });
     app.trigger("stop", req.params.id);
 });

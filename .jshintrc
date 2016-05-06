@@ -1,7 +1,0 @@
-{
-  "undef": true,
-  "unused": true,
-  "esversion": 6,
-  "predef": [ "MY_GLOBAL" ],
-  "node": true
-}

@@ -14,7 +14,7 @@ var interval = null;
 
 var ticksPerSecond = 60;
 var tickIntervalMillis = 1000 / ticksPerSecond;
-var startTime = 0
+var startTime = 0;
 var patternFunction = sweep;
 
 board.on("ready", setup);
@@ -47,17 +47,18 @@ function sweep(tick) {
     leds.each(function(led) {
         led.off();
     });
+
     leds[tick % leds.length].on();
     currentLEDIndex = (currentLEDIndex + 1);
 }
 
 function led(model) {
     model.id = model.id || 0;
-    model.state = model.state || "off"
+    model.state = model.state || "off";
     // stop loop
     stop();
     // kill other leds
-    leds.each((led) => led["off"]());
+    leds.each((led) => led.off());
     // start the led at id
     currentLEDIndex = id;
     leds[currentLEDIndex][model.state]();
@@ -66,5 +67,5 @@ function led(model) {
 module.exports = {
     led,
     play,
-    stop
+    stop,
 };
