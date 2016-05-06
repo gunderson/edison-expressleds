@@ -2,6 +2,7 @@
 /*jshint unused:true */
 
 "use strict";
+var $ = require("zepto");
 var _ = require("lodash");
 var BackboneEvents = require("backbone-events-standalone");
 var express = require('express');
@@ -41,7 +42,6 @@ app.use(
     })
 );
 
-console.log("PATH PATH PATH PATH", path.resolve(__dirname, '../js'), path.resolve(__dirname, '../../../node_modules'))
 app.use('/js', babelify(
     path.resolve(__dirname, '../js')
 ));
