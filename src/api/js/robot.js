@@ -51,19 +51,20 @@ function sweep(tick) {
     currentLEDIndex = (currentLEDIndex + 1);
 }
 
-function triggerLed(id) {
-    id = id || 0;
+function led(model) {
+    model.id = model.id || 0;
+    model.state = model.state || "off"
     // stop loop
     stop();
     // kill other leds
-    leds.each((led) => led.off());
+    leds.each((led) => led.[off]());
     // start the led at id
     currentLEDIndex = id;
-    leds[currentLEDIndex].on();
+    leds[currentLEDIndex].[model.state]();
 }
 
 module.exports = {
-    triggerLed,
+    led,
     play,
     stop
 };

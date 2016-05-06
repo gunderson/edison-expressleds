@@ -11,8 +11,8 @@ app.get('/', function(req, res) {
     res.send('Hello World!');
 });
 
-app.get("/trigger-led/:id", function(req, res) {
-    app.trigger("led", req.params.id);
+app.get("/led/:id/:state", function(req, res) {
+    app.trigger("led", req.params);
 });
 
 app.get("/play", function(req, res) {
