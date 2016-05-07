@@ -38,7 +38,6 @@ app.use(
 );
 
 app.use( express.static( path.resolve( __dirname, "../" ) ) );
-app.use( express.static( path.resolve( __dirname, '../../../node_modules' ) ) );
 
 app.get( '/', function ( req, res ) {
 	res.render( "index.jade" );

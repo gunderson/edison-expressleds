@@ -4,7 +4,7 @@
     "description": "Simple LED blink in node.js with resin.io on Intel Edison",
     "main": "main.js",
     "scripts": {
-        "build": "node gulp",
+        "postinstall": "gulp",
         "start": "node --harmony ./src/main.js"
     },
     "browserify": {

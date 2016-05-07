@@ -54,9 +54,8 @@ function setupDomainTasks( domainSettings ) {
 
 	gulp.task( `${domainSettings.domainName}-js`, function () {
 		var b = browserify( {
-			entries: [ `./src/${domainSettings.domainName}/js/index.js` ],
+			entries: [ `./src/${domainSettings.domainName}/js/index.js`, `./src/${domainSettings.domainName}/js/server.js` ],
 			debug: true,
-			insertGlobals: false,
 			paths: [ `./src/${domainSettings.domainName}/js/`, './node_modules', `./src/shared/js/` ],
 		} );
 
@@ -112,6 +111,22 @@ function setupDomainTasks( domainSettings ) {
 	] );
 
 }
+
+gulp.task( `main-js`, function () {
+	var b = browserify( {
+		entries: [ `./src/main.js` ],
+		debug: true,
+		paths: [ './node_modules', `./src/shared/js/` ],
+	} );
+
+	return b.bundle()
+		.pipe( plumber() )
+		.pipe( source( `main.js` ) )
+		.pipe( buffer() )
+		.pipe( gulp.dest( `./dist/` ) )
+		.pipe( livereload( liveReloadServer ) )
+		.on( 'error', gutil.log )
+} );
 
 // Default Task
 gulp.task( 'default', _.map( domains, ( d ) => `${d.domainName}` ) );
