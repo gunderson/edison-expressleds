@@ -22,6 +22,7 @@ WORKDIR /usr/src/app
 
 # Copies the package.json first for better cache on later pushes
 COPY package.json /usr/src/app/package.json
+RUN pwd
 COPY gulpfile.js /usr/src/app/gulpfile.js
 
 COPY . ./
