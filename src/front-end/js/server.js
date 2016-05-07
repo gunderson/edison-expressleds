@@ -1,7 +1,6 @@
 "use strict";
 var BackboneEvents = require( "backbone-events-standalone" );
 var _ = require( "lodash" );
-var babelify = require( "express-babelify-middleware" );
 var bodyParser = require( "body-parser" );
 var express = require( "express" );
 var favicon = require( "serve-favicon" );
