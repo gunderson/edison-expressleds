@@ -23,7 +23,7 @@ app.use( bodyParser.urlencoded( {
 // parse application/json
 app.use( bodyParser.json() );
 
-app.set( 'views', __dirname + '/../jade/' );
+app.set( 'views', path.resolve( __dirname + '/../jade/' ) );
 app.set( 'view engine', 'pug' );
 
 app.use(
