@@ -17,13 +17,13 @@ RUN git clone https://github.com/intel-iot-devkit/mraa.git \
 RUN npm update && npm install -g gulp
 
 
-# Defines our working directory in container
-WORKDIR /usr/src/app
-
 # Copies the package.json first for better cache on later pushes
 COPY package.json /usr/src/app/package.json
 RUN pwd
 COPY gulpfile.js /usr/src/app/gulpfile.js
+
+# Defines our working directory in container
+WORKDIR /usr/src/app
 
 COPY . ./
 # This install npm dependencies on the resin.io build server,
