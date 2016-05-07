@@ -22,6 +22,7 @@ WORKDIR /usr/src/app
 
 # Copies the package.json first for better cache on later pushes
 COPY package.json /usr/src/app/package.json
+COPY gulpfile.js /usr/src/app/gulpfile.js
 
 # This install npm dependencies on the resin.io build server,
 # making sure to clean up the artifacts it creates in order to reduce the image size.
