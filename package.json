@@ -36,6 +36,7 @@
         "gulp-plumber": "^1.1.0",
         "gulp-sass": "*",
         "gulp-csso": "*",
+        "gulp-uglify": "*",
         "gulp-sourcemaps": "^1.6.0",
         "gulp-util": "^3.0.7",
         "jade": "^1.11.0",
