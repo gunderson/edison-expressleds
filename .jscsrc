@@ -1,22 +1,14 @@
 {
     "esnext": true,
-    "disallowSpacesInNamedFunctionExpression": {
-        "beforeOpeningRoundBrace": true
-    },
-    "disallowSpacesInFunctionExpression": {
-        "beforeOpeningRoundBrace": true
-    },
-    "disallowSpacesInAnonymousFunctionExpression": {
-        "beforeOpeningRoundBrace": true
-    },
-    "disallowSpacesInFunctionDeclaration": {
-        "beforeOpeningRoundBrace": true
-    },
-    "disallowEmptyBlocks": true,
-    "disallowSpacesInCallExpression": true,
-    "disallowSpacesInsideArrayBrackets": true,
-    "disallowSpacesInsideParentheses": true,
-    "disallowQuotedKeysInObjects": true,
+    "disallowSpacesInNamedFunctionExpression": false,
+    "disallowSpacesInFunctionExpression": false,
+    "disallowSpacesInAnonymousFunctionExpression": false,
+    "disallowSpacesInFunctionDeclaration": false,
+    "disallowEmptyBlocks": false,
+    "disallowSpacesInCallExpression": false,
+    "disallowSpacesInsideArrayBrackets": false,
+    "disallowSpacesInsideParentheses": false,
+    "disallowQuotedKeysInObjects": false,
     "disallowSpaceAfterObjectKeys": true,
     "disallowSpaceAfterPrefixUnaryOperators": true,
     "disallowSpaceBeforePostfixUnaryOperators": true,
@@ -33,7 +25,7 @@
     "disallowKeywordsOnNewLine": ["else"],
     "disallowMultipleLineBreaks": false,
     "disallowMultipleLineStrings": true,
-    "disallowMultipleVarDecl": true,
+    "disallowMultipleVarDecl": false,
     "disallowSpaceBeforeComma": true,
     "disallowSpaceBeforeSemicolon": true,
     "requireSpaceBeforeBlockStatements": false,
@@ -44,7 +36,7 @@
     "requireSpaceBeforeBinaryOperators": true,
     "requireSpaceAfterBinaryOperators": true,
     "requireCamelCaseOrUpperCaseIdentifiers": true,
-    "requireLineFeedAtFileEnd": true,
+    "requireLineFeedAtFileEnd": false,
     "requireCapitalizedConstructors": true,
     "requireDotNotation": true,
     "requireSpacesInForStatement": true,
@@ -52,6 +44,7 @@
     "requireCurlyBraces": [
         "do"
     ],
+    "requireImportAlphabetized": true,
     "requireSpaceAfterKeywords": [
         "if",
         "else",
@@ -70,5 +63,5 @@
     "safeContextKeyword": "_this",
     "validateLineBreaks": "LF",
     "validateQuoteMarks": false,
-    "validateIndentation": 4
+    "validateIndentation": false
 }

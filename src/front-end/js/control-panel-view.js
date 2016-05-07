@@ -1,6 +1,7 @@
-import $ from "jquery";
-import _ from "lodash";
-import io from "socket.io-client";
+"use strict";
+var $ = require( "jquery" );
+var _ = require( "lodash" );
+var io = require( "socket.io-client" );
 
 // var io = require("socket.io-client");
 
@@ -12,14 +13,17 @@ import io from "socket.io-client";
 var localIp = "192.168.6.249";
 var localPort = "3000";
 
-$("button.play").click(() => $.get(`http://${localIp}:${localPort}/play`));
-$("button.stop").click(() => $.get(`http://${localIp}:${localPort}/stop`));
+$( "button.play" )
+	.click( () => $.get( `http://${localIp}:${localPort}/play` ) );
+$( "button.stop" )
+	.click( () => $.get( `http://${localIp}:${localPort}/stop` ) );
 
-$(`input[type="checkbox"]`).on("change", (i,el) => {
-    console.log(this, arguments);
-    if (el.checked) {
-        $.get(`http://${localIp}:${localPort}/led/${ el.value }/on`);
-    } else {
-        $.get(`http://${localIp}:${localPort}/led/${ el.value }/off`);
-    }
-});
+$( `input[type="checkbox"]` )
+	.on( "change", ( i, el ) => {
+		console.log( this, arguments );
+		if ( el.checked ) {
+			$.get( `http://${localIp}:${localPort}/led/${ el.value }/on` );
+		} else {
+			$.get( `http://${localIp}:${localPort}/led/${ el.value }/off` );
+		}
+	} );
