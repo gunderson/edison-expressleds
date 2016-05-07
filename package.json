@@ -39,6 +39,7 @@
         "gulp-uglify": "*",
         "gulp-jade": "*",
         "gulp-concat": "*",
+        "gulp-livereload": "*",
         "gulp-sourcemaps": "^1.6.0",
         "gulp-util": "^3.0.7",
         "jade": "^1.11.0",
