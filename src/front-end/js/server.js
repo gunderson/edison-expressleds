@@ -16,7 +16,7 @@ var router = express.Router();
 router.use( logger( 'dev' ) );
 router.use( methodOverride() );
 
-router.set( "env", "development" );
+app.set( "env", "development" );
 // parse application/x-www-form-urlencoded
 router.use( bodyParser.urlencoded( {
 	extended: false,
