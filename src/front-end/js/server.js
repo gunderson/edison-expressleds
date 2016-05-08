@@ -37,6 +37,8 @@ app.use(
 	} )
 );
 
+console.log( "THE PATH", path.resolve( __dirname, "../../../dist/" ) ) );
+
 app.use( express.static( path.resolve( __dirname, "../../../dist/" ) ) );
 
 app.get( '/', function ( req, res ) {
