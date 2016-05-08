@@ -20,7 +20,6 @@ RUN npm update && npm install -g gulp
 # Copies the package.json first for better cache on later pushes
 COPY package.json /usr/src/app/package.json
 COPY gulpfile.js /usr/src/app/gulpfile.js
-RUN ls /usr/src/app
 
 # Defines our working directory in container
 WORKDIR /usr/src/app
