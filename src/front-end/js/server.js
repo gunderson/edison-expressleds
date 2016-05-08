@@ -12,16 +12,17 @@ var sass = require( "node-sass" );
 
 var app = express();
 app = _.extend( app, BackboneEvents );
-app.use( logger( 'dev' ) );
-app.use( methodOverride() );
+var router = express.Router();
+router.use( logger( 'dev' ) );
+router.use( methodOverride() );
 
-app.set( "env", "development" );
+router.set( "env", "development" );
 // parse application/x-www-form-urlencoded
-app.use( bodyParser.urlencoded( {
+router.use( bodyParser.urlencoded( {
 	extended: false,
 } ) );
 // parse application/json
-app.use( bodyParser.json() );
+router.use( bodyParser.json() );
 //
 // app.set( 'views', path.resolve( __dirname, '../jade/static/' ) );
 // app.set( 'view engine', 'pug' );
@@ -39,14 +40,15 @@ app.use( bodyParser.json() );
 
 console.log( "THE PATH", path.resolve( __dirname, "../../../dist/" ) );
 
-app.use( express.static( path.resolve( __dirname, "../../../dist/" ) ) );
+router.use( express.static( path.resolve( __dirname, "../../../dist/" ) ) );
 //
 // app.get( '/', function ( req, res ) {
 // 	res.render( "index.jade" );
 // } );
 
-app.listen( 80, function () {
+router.listen( 80, function () {
 	console.log( 'Front-end server listening on port 80!' );
 } );
+app.use( '/', router );
 
 module.exports = app;
