@@ -22,28 +22,28 @@ app.use( bodyParser.urlencoded( {
 } ) );
 // parse application/json
 app.use( bodyParser.json() );
-
-app.set( 'views', path.resolve( __dirname, '../jade/static/' ) );
-app.set( 'view engine', 'pug' );
-
-app.use(
-	sassMiddleware( {
-		src: path.resolve( __dirname, '../sass' ),
-		dest: path.resolve( __dirname, '../css' ),
-		prefix: '/css',
-		debug: true,
-		indentedSyntax: true,
-		sourceMap: true,
-	} )
-);
+//
+// app.set( 'views', path.resolve( __dirname, '../jade/static/' ) );
+// app.set( 'view engine', 'pug' );
+//
+// app.use(
+// 	sassMiddleware( {
+// 		src: path.resolve( __dirname, '../sass' ),
+// 		dest: path.resolve( __dirname, '../css' ),
+// 		prefix: '/css',
+// 		debug: true,
+// 		indentedSyntax: true,
+// 		sourceMap: true,
+// 	} )
+// );
 
 console.log( "THE PATH", path.resolve( __dirname, "../../../dist/" ) );
 
 app.use( express.static( path.resolve( __dirname, "../../../dist/" ) ) );
-
-app.get( '/', function ( req, res ) {
-	res.render( "index.jade" );
-} );
+//
+// app.get( '/', function ( req, res ) {
+// 	res.render( "index.jade" );
+// } );
 
 app.listen( 80, function () {
 	console.log( 'Front-end server listening on port 80!' );
