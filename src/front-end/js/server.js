@@ -23,7 +23,7 @@ app.use( bodyParser.urlencoded( {
 // parse application/json
 app.use( bodyParser.json() );
 
-app.set( 'views', path.resolve( __dirname + '/../jade/static/' ) );
+app.set( 'views', path.resolve( __dirname, '../jade/static/' ) );
 app.set( 'view engine', 'pug' );
 
 app.use(
@@ -37,7 +37,7 @@ app.use(
 	} )
 );
 
-app.use( express.static( path.resolve( __dirname, "../dist/" ) ) );
+app.use( express.static( path.resolve( __dirname, "../../../dist/" ) ) );
 
 app.get( '/', function ( req, res ) {
 	res.render( "index.jade" );
