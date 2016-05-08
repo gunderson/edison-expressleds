@@ -44,7 +44,7 @@ router.use( express.static( path.resolve( __dirname, "../../../dist/" ) ) );
 // 	res.render( "index.jade" );
 // } );
 
-router.listen( 80, function () {
+app.listen( 80, function () {
 	console.log( 'Front-end server listening on port 80!' );
 } );
 app.use( '/', router );
