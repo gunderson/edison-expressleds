@@ -45,7 +45,7 @@ router.use( express.static( path.resolve( __dirname, "../../../dist/" ) ) );
 // } );
 
 app.listen( 80, function () {
-	console.log( 'Front-end server listening on port 80!' );
+	console.log( 'Front-end server listening on port 80!', path.resolve( __dirname, "../../../dist/" ) );
 } );
 app.use( '/', router );
 
