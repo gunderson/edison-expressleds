@@ -38,15 +38,11 @@ router.use( bodyParser.json() );
 // 	} )
 // );
 
-router.use( express.static( path.resolve( __dirname, "../../../dist/" ) ) );
-//
-// app.get( '/', function ( req, res ) {
-// 	res.render( "index.jade" );
-// } );
+app.use( express.static( path.resolve( __dirname, "../../../dist/" ) ) );
 
 app.listen( 80, function () {
 	console.log( 'Front-end server listening on port 80!', path.resolve( __dirname, "../../../dist/" ) );
 } );
-app.use( '/', router );
+// app.use( '/', router );
 
 module.exports = app;
