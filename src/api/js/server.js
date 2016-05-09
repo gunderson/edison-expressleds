@@ -3,23 +3,27 @@ var BackboneEvents = require( "backbone-events-standalone" );
 var _ = require( "lodash" );
 var express = require( "express" );
 var HeaderUtils = require( "./utils/HeaderUtils" );
+var logger = require( "morgan" );
 
 var app = express();
 app = _.extend( app, BackboneEvents );
 
-app.get( '/', function ( req, res ) {
+var router = express.Router();
+router.use( logger( 'dev' ) );
+
+router.get( '/', function ( req, res ) {
 	HeaderUtils.addJSONHeader( res );
 	HeaderUtils.addCORSHeader( res );
 	res.send( 'Hello World!' );
 } );
 
-app.get( "/led/:id/:state", function ( req, res ) {
+router.get( "/led/:id/:state", function ( req, res ) {
 	HeaderUtils.addJSONHeader( res );
 	HeaderUtils.addCORSHeader( res );
 	app.trigger( "led", req.params );
 } );
 
-app.get( "/play", function ( req, res ) {
+router.get( "/play", function ( req, res ) {
 	HeaderUtils.addJSONHeader( res );
 	HeaderUtils.addCORSHeader( res );
 	res.send( {
@@ -28,7 +32,7 @@ app.get( "/play", function ( req, res ) {
 	app.trigger( "play", req.params.id );
 } );
 
-app.get( "/stop", function ( req, res ) {
+router.get( "/stop", function ( req, res ) {
 	HeaderUtils.addJSONHeader( res );
 	HeaderUtils.addCORSHeader( res );
 	res.send( {
