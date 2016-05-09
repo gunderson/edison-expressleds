@@ -11,35 +11,40 @@ app = _.extend( app, BackboneEvents );
 var router = express.Router();
 router.use( logger( 'dev' ) );
 
-router.use( '/', function ( req, res ) {
-	HeaderUtils.addJSONHeader( res );
-	HeaderUtils.addCORSHeader( res );
-	res.send( 'Hello World!' );
-} );
-
-router.use( "/led/:id/:state", function ( req, res ) {
-	HeaderUtils.addJSONHeader( res );
-	HeaderUtils.addCORSHeader( res );
-	app.trigger( "led", req.params );
-} );
-
-router.use( "/play", function ( req, res ) {
-	HeaderUtils.addJSONHeader( res );
-	HeaderUtils.addCORSHeader( res );
-	res.send( {
-		play: true,
+router.route( '/' )
+	.use( function ( req, res, next ) {
+		HeaderUtils.addJSONHeader( res );
+		HeaderUtils.addCORSHeader( res );
+		res.send( 'Hello World!' );
+		next();
 	} );
-	app.trigger( "play", req.params.id );
-} );
 
-router.use( "/stop", function ( req, res ) {
-	HeaderUtils.addJSONHeader( res );
-	HeaderUtils.addCORSHeader( res );
-	res.send( {
-		stop: true,
+router.route( '/led/:id/:state' )
+	.use( function ( req, res, next ) {
+		HeaderUtils.addJSONHeader( res );
+		HeaderUtils.addCORSHeader( res );
+		app.trigger( "led", req.params );
 	} );
-	app.trigger( "stop", req.params.id );
-} );
+
+router.route( 'play' )
+	.use( function ( req, res, next ) {
+		HeaderUtils.addJSONHeader( res );
+		HeaderUtils.addCORSHeader( res );
+		res.send( {
+			play: true,
+		} );
+		app.trigger( "play", req.params.id );
+	} );
+
+router.route( "/stop" )
+	.use( function ( req, res, next ) {
+		HeaderUtils.addJSONHeader( res );
+		HeaderUtils.addCORSHeader( res );
+		res.send( {
+			stop: true,
+		} );
+		app.trigger( "stop", req.params.id );
+	} );
 
 app.listen( 3000, function () {
 	console.log( 'API server listening on port 3000!' );
