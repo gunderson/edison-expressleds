@@ -16,7 +16,6 @@ app.use( express.static( path.resolve( __dirname, "../../../dist/front-end/" ) )
 var router = express.Router();
 router.use( logger( 'dev' ) );
 router.use( methodOverride() );
-
 // parse application/x-www-form-urlencoded
 router.use( bodyParser.urlencoded( {
 	extended: false,
@@ -24,9 +23,9 @@ router.use( bodyParser.urlencoded( {
 // parse application/json
 router.use( bodyParser.json() );
 
+app.use( '/', router );
 app.listen( 80, function () {
 	console.log( 'Front-end server listening on port 80!', path.resolve( __dirname, "../../../dist/front-end/" ) );
 } );
-app.use( '/', router );
 
 module.exports = app;
