@@ -19,9 +19,9 @@ $( "button.play" )
 $( "button.stop" )
 	.click( () => $.get( `http://${localIp}:${localPort}/stop` ) );
 
-$( `input[type="checkbox"]` )
-	.on( "change", ( i, el ) => {
-		console.log( i, el );
+$( `input:checkbox` )
+	.on( "change", ( evt ) => {
+		let el = evt.target;
 		if ( el.checked ) {
 			$.get( `http://${localIp}:${localPort}/led/${ el.value }/on` );
 		} else {
