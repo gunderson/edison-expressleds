@@ -23,6 +23,9 @@ $( `input:checkbox` )
 	.on( "change", ( evt ) => {
 		let el = evt.target;
 		if ( el.checked ) {
+			$( `input:checkbox` )
+				.each( ( i, el ) => el.value === i ? el.checked = true : el.checked = false )
+
 			$.get( `http://${localIp}:${localPort}/led/${ el.value }/on` );
 		} else {
 			$.get( `http://${localIp}:${localPort}/led/${ el.value }/off` );
