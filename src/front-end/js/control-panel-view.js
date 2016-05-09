@@ -10,7 +10,8 @@ var io = require( "socket.io-client" );
 // socket.on('event', function(data) {});
 // socket.on('disconnect', function() {});
 
-var localIp = "192.168.6.249";
+// var localIp = "192.168.6.249";
+var localIp = "10.0.1.8";
 var localPort = "3000";
 
 $( "button.play" )
@@ -20,7 +21,7 @@ $( "button.stop" )
 
 $( `input[type="checkbox"]` )
 	.on( "change", ( i, el ) => {
-		console.log( this, arguments );
+		console.log( i, el );
 		if ( el.checked ) {
 			$.get( `http://${localIp}:${localPort}/led/${ el.value }/on` );
 		} else {
