@@ -11,7 +11,7 @@ app = _.extend( app, BackboneEvents );
 var router = express.Router();
 router.use( logger( 'dev' ) );
 
-router.route( '/' )
+app.route( '/' )
 	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
@@ -19,14 +19,14 @@ router.route( '/' )
 		next();
 	} );
 
-router.route( '/led/:id/:state' )
+app.route( '/led/:id/:state' )
 	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
 		app.trigger( "led", req.params );
 	} );
 
-router.route( 'play' )
+app.route( 'play' )
 	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
@@ -36,7 +36,7 @@ router.route( 'play' )
 		app.trigger( "play", req.params.id );
 	} );
 
-router.route( "/stop" )
+app.route( "/stop" )
 	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
