@@ -26,7 +26,7 @@ app.route( '/led/:id/:state' )
 		app.trigger( "led", req.params );
 	} );
 
-app.route( 'play' )
+app.route( '/play' )
 	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
