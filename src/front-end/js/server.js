@@ -38,10 +38,10 @@ router.use( bodyParser.json() );
 // 	} )
 // );
 
-app.use( express.static( path.resolve( __dirname, "../../../dist/" ) ) );
+app.use( express.static( path.resolve( __dirname, "../../../dist/front-end/" ) ) );
 
 app.listen( 80, function () {
-	console.log( 'Front-end server listening on port 80!', path.resolve( __dirname, "../../../dist/" ) );
+	console.log( 'Front-end server listening on port 80!', path.resolve( __dirname, "../../../dist/front-end/" ) );
 } );
 // app.use( '/', router );
 
