@@ -11,19 +11,19 @@ app = _.extend( app, BackboneEvents );
 var router = express.Router();
 router.use( logger( 'dev' ) );
 
-router.get( '/', function ( req, res ) {
+router.all( '/', function ( req, res ) {
 	HeaderUtils.addJSONHeader( res );
 	HeaderUtils.addCORSHeader( res );
 	res.send( 'Hello World!' );
 } );
 
-router.get( "/led/:id/:state", function ( req, res ) {
+router.all( "/led/:id/:state", function ( req, res ) {
 	HeaderUtils.addJSONHeader( res );
 	HeaderUtils.addCORSHeader( res );
 	app.trigger( "led", req.params );
 } );
 
-router.get( "/play", function ( req, res ) {
+router.all( "/play", function ( req, res ) {
 	HeaderUtils.addJSONHeader( res );
 	HeaderUtils.addCORSHeader( res );
 	res.send( {
@@ -32,7 +32,7 @@ router.get( "/play", function ( req, res ) {
 	app.trigger( "play", req.params.id );
 } );
 
-router.get( "/stop", function ( req, res ) {
+router.all( "/stop", function ( req, res ) {
 	HeaderUtils.addJSONHeader( res );
 	HeaderUtils.addCORSHeader( res );
 	res.send( {
