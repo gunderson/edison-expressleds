@@ -15,7 +15,7 @@ app.route( '/' )
 	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
-		res.send( 'Hello World!' );
+		res.send( req.params );
 		next();
 	} );
 
@@ -23,6 +23,7 @@ app.route( '/led/:id/:state' )
 	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
+		res.send( req.params );
 		app.trigger( "led", req.params );
 	} );
 
