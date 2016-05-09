@@ -12,7 +12,7 @@ var router = express.Router();
 router.use( logger( 'dev' ) );
 
 router.route( '/' )
-	.use( function ( req, res, next ) {
+	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
 		res.send( 'Hello World!' );
@@ -20,14 +20,14 @@ router.route( '/' )
 	} );
 
 router.route( '/led/:id/:state' )
-	.use( function ( req, res, next ) {
+	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
 		app.trigger( "led", req.params );
 	} );
 
 router.route( 'play' )
-	.use( function ( req, res, next ) {
+	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
 		res.send( {
@@ -37,7 +37,7 @@ router.route( 'play' )
 	} );
 
 router.route( "/stop" )
-	.use( function ( req, res, next ) {
+	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
 		res.send( {
