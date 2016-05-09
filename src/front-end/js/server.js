@@ -8,10 +8,14 @@ var logger = require( "morgan" );
 var methodOverride = require( "method-override" );
 var path = require( "path" );
 
+//---------------------------------------------------------
+
 var app = express();
 app = _.extend( app, BackboneEvents );
 app.set( "env", "development" );
 app.use( express.static( path.resolve( __dirname, "../../../dist/front-end/" ) ) );
+
+//---------------------------------------------------------
 
 var router = express.Router();
 router.use( logger( 'dev' ) );
@@ -22,6 +26,8 @@ router.use( bodyParser.urlencoded( {
 } ) );
 // parse application/json
 router.use( bodyParser.json() );
+
+//---------------------------------------------------------
 
 app.use( '/', router );
 app.listen( 80, function () {

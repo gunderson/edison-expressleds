@@ -54,7 +54,7 @@ function setupDomainTasks( domainSettings ) {
 
 	gulp.task( `${domainSettings.domainName}-js`, function () {
 		var b = browserify( {
-			entries: [ `./src/${domainSettings.domainName}/js/index.js`, `./src/${domainSettings.domainName}/js/server.js` ],
+			entries: [ `./src/${domainSettings.domainName}/js/index.js` ],
 			debug: true,
 			paths: [ `./src/${domainSettings.domainName}/js/`, './node_modules', `./src/shared/js/` ],
 		} );
