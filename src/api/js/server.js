@@ -23,7 +23,7 @@ app.route( '/led/:id/:state' )
 	.get( function ( req, res, next ) {
 		HeaderUtils.addJSONHeader( res );
 		HeaderUtils.addCORSHeader( res );
-		res.send( req.params );
+		res.send( _.pick( req.params, [ "id", "state" ] ) );
 		app.trigger( "led", req.params );
 	} );
 
